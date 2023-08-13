@@ -56,12 +56,12 @@ copy:
 #   name: link || icon
 social:
   github: https://github.com/ekilito || icon-github 
-  qq邮箱: mailto:2856509748@qq.com || icon-youxiang 
+  #qq邮箱: mailto:2856509748@qq.com || icon-youxiang 
   B站: https://space.bilibili.com/194984444 || icon-bilibili 
-  微信: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/weixinhao.jpg || icon-weixin 
-  QQ: https://res.abeim.cn/api/qq/?qq=2856509748 || icon-qq 
-  微博: https://m.weibo.cn/u/7520593701 || icon-weibo 
-  网易云: https://music.163.com/#/user/home?id=573476405 || icon-yinle 
+  #微信: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/weixinhao.jpg || icon-weixin 
+  #QQ: https://res.abeim.cn/api/qq/?qq=2856509748 || icon-qq 
+  #微博: https://m.weibo.cn/u/7520593701 || icon-weibo 
+  #网易云: https://music.163.com/#/user/home?id=573476405 || icon-yinle 
 
 # 作者卡片 状态
 author_status:
