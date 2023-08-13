@@ -1,7 +1,7 @@
 - class_name: 关于页
   subtitle: 生活明朗，万物可爱✨
-  avatarImg: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.0/img/avatar.webp
-  name: 小清
+  avatarImg: https://bu.dusays.com/2023/08/13/64d894b14669b.webp
+  name: kilito
   description: 是一名 前端工程师、学生、独立开发者、博主
   aboutsiteTips:
     tips: 追求
@@ -29,9 +29,9 @@
     cover: https://bu.dusays.com/2023/05/01/644f4b037b930.jpg
   map:
     title: 我现在住在
-    StrengthenTitle: 中国，阜阳市
-    background: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/map-fuyang-bai.png
-    backgroundDark: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/map-fuyang-ye.png
+    StrengthenTitle: 中国，合肥市
+    background: https://bu.dusays.com/2023/08/13/64d8cccb861af.png
+    backgroundDark: https://bu.dusays.com/2023/08/13/64d8cccb1bbcc.png
   selfInfo:
     selfInfoTips1: 生于
     selfInfoContentYear: 2000
@@ -42,7 +42,7 @@
   personalities:
     author_name: 执政官
     personality_type: ESFJ-A
-    photo_url: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/games.jpg
+    photo_url: https://bu.dusays.com/2023/08/13/64d894b442a70.jpg
     personality_img: https://npm.elemecdn.com/anzhiyu-blog@2.0.8/img/svg/ESFJ-A.svg
     name_url: https://www.16personalities.com/ch/esfj-%E4%BA%BA%E6%A0%BC
   maxim:
@@ -55,37 +55,37 @@
     buff_bottom: 二次元指数 MAX
   game:
     game_tips: 爱好游戏
-    game_title: 金馋馋
-    game_uid: "UID: 一只小小清呀"
-    game_bg: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/809070521.jpg
+    game_title: 原神
+    game_uid: "UID: CoCo"
+    game_bg: https://bu.dusays.com/2023/08/13/64d8cefc409f9.jpg
   comic:
     comic_tips: 爱好番剧
     comic_title: 追番
     comic_list:
-      - name: 约定的梦幻岛
-        href: https://www.bilibili.com/bangumi/media/md5267750/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://bu.dusays.com/2023/05/27/647166c44b414.webp
-      - name: 咒术回战
-        href: https://www.bilibili.com/bangumi/media/md28229899/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://bu.dusays.com/2023/05/24/646db4398832e.webp
-      - name: 紫罗兰永恒花园
-        href: https://www.bilibili.com/bangumi/media/md8892/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://bu.dusays.com/2023/05/24/646db43983d99.webp
-      - name: 鬼灭之刃
-        href: https://www.bilibili.com/bangumi/media/md22718131/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://bu.dusays.com/2023/05/24/646db439856a0.webp
-      - name: JOJO的奇妙冒险 黄金之风
-        href: https://www.bilibili.com/bangumi/media/md135652/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://bu.dusays.com/2023/05/30/64760e38d651a.webp
+      - name: 仙王的日常生活
+        href: https://www.bilibili.com/bangumi/media/md28235390
+        cover: https://bu.dusays.com/2023/08/13/64d8cb133fe62.webp
+      - name: 间谍过家家
+        href: https://www.bilibili.com/bangumi/media/md28237119
+        cover: https://bu.dusays.com/2023/08/13/64d8cb128f1a0.webp
+      - name: 刀剑神域
+        href: https://www.bilibili.com/bangumi/media/md24755609
+        cover: https://bu.dusays.com/2023/08/13/64d8cb125fb77.webp
+      - name: 总之就是非常可爱
+        href: https://www.bilibili.com/bangumi/media/md20266559
+        cover: https://bu.dusays.com/2023/08/13/64d8cb1343f4e.webp
+      - name: 青春猪头少年不会梦到兔女郎学姐
+        href: https://www.bilibili.com/bangumi/media/md134932
+        cover: https://bu.dusays.com/2023/08/13/64d8cb1337b1f.webp
   like:
     like_tips: 关注偏好
     like_title: 数码科技
-    like_bg: https://bu.dusays.com/2022/12/06/638f5f05ce1f7.jpg
+    like_bg: https://bu.dusays.com/2023/08/13/64d894b45675a.png
     like_bottom: 手机、电脑软硬件
   music:
     music_tips: 音乐偏好
     music_title: 周杰伦、民谣、华语流行
-    music_bg: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/marshmello.png
+    music_bg: https://bu.dusays.com/2023/08/13/64d894b451b0c.png
     music_link: /music
   reward_list:
     - name: LK66

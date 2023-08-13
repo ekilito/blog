@@ -6,7 +6,7 @@ tags: 技术                # 文章标签
 categories: 技术             # 文章分类
 keywords: koa,项目部署    # 文章关键字
 description:             # 页面描述
-cover: https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp  # 文章缩略图
+cover: https://bu.dusays.com/2023/08/13/64d894b355f7d.webp  # 文章缩略图
 
 aside: true # 显示侧边栏 (默认 true)
 toc_style_simple: # 显示 toc 简洁模式

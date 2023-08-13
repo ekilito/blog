@@ -5,7 +5,7 @@ description: 每天一道面试题。
 tags: javascript
 keywords: js面试题,前端
 sticky: 1 # 数字越大，置顶优先
-cover: https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp
+cover: https://bu.dusays.com/2023/08/13/64d894b3285a5.webp
 copyright: true
 toc_number: false
 abbrlink: 3927

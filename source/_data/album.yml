@@ -27,10 +27,10 @@
 - class_name: 我的日常
   path_name: /dailyPhoto
   type: 1
-  description: 这里存放的是有关我自己的一些沙雕生活与有趣的事情。
-  cover: https://bu.dusays.com/2023/04/09/64329399cea5a.webp
+  description: 这里存放的是有关我自己的一些生活与有趣的事情。
+  cover: https://bu.dusays.com/2023/08/13/64d8d577b5d85.jpg
   album_list:
-    - date: 2022-10-24
-      content: 老妹的画
+    - date: 2023-07-04 19:41:27
+      content: 今天的天空真好看呀！
       image:
-        - https://bu.dusays.com/2023/04/09/643293997b92b.jpeg
+        - https://bu.dusays.com/2023/08/13/64d8d577b5d85.jpg
