@@ -624,9 +624,9 @@ site_verification:
 
 theme_color:
   enable: true
-  main: "#3b70fc"
+  main: "#F2729E" # #3b70fc
   dark_main: "#f2b94b"
-  paginator: "#3b70fc"
+  paginator: "#F2729E" #3b70fc 分页
   #   button_hover: "#FF7242"
   text_selection: "#2128bd"
   link_color: "var(--anzhiyu-fontcolor)"
@@ -634,7 +634,7 @@ theme_color:
   hr_color: "#4259ef23"
   code_foreground: "#fff"
   code_background: "var(--anzhiyu-code-stress)"
-  toc_color: "#3b70fc"
+  toc_color: "#F2729E" #3b70fc
   #   blockquote_padding_color: "#3b70fc"
   #   blockquote_background_color: "#3b70fc"
   scrollbar_color: "var(--anzhiyu-scrollbar)"
@@ -800,7 +800,7 @@ aside:
   hide: false
   button: true
   mobile: true # display on mobile
-  position: right # left or right
+  position: left # left or right
   display: # 控制对应详情页面是否显示侧边栏
     archive: true
     tag: true
@@ -815,7 +815,7 @@ aside:
     content: 🍧this is my blog~🍧
     # 公众号模块
   card_weixin:
-    enable: false
+    enable: true
     face: https://bu.dusays.com/2023/01/13/63c02edf44033.png
     backFace: https://bu.dusays.com/2023/05/13/645fa415e8694.png
     # 文章
@@ -823,7 +823,7 @@ aside:
     enable: true
     limit: 5 # if set 0 will show all
     sort: date # date or updated
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order: # 控制排序的，数字越小，排序越前 Don't modify the setting unless you know how it works
     # 分类
   card_categories:
     enable: false
@@ -1043,6 +1043,7 @@ home_top:
   title: 生活明朗
   subTitle: 万物可爱。
   siteText: wudl.cn
+  # 分类模块
   category:
     - name: 前端
       path: /categories/技术/
@@ -1298,3 +1299,4 @@ CDN:
     # waterfall:
     # ali_iconfont_css:
     # accesskey_js:
+

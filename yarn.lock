@@ -2351,6 +2351,13 @@
     "progress" "^2.0.3"
     "tunnel" "^0.0.6"
 
+"hexo-butterfly-categories-card@^1.0.0":
+  "integrity" "sha512-fyZrtxPwAv4CofTCNy57Rs6UzdnR2+gnmOeKaf+Ti8BH5kHGmX6Cdi+6lgSW3fPmR6BS4+XKtflGdRoKQpBxfw=="
+  "resolved" "https://registry.npmmirror.com/hexo-butterfly-categories-card/-/hexo-butterfly-categories-card-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "pug" "^3.0.0"
+
 "hexo-butterfly-envelope@^1.0.15":
   "integrity" "sha512-Z12iYDhrrJkARSvCIYTVRPrlipLE9o5Zeh2kozj/MbLz5tcQmfr62w+qu+hOJh2XiZucAyyoUyZq5faKP4YD4A=="
   "resolved" "https://registry.npmmirror.com/hexo-butterfly-envelope/-/hexo-butterfly-envelope-1.0.15.tgz"
@@ -2448,6 +2455,11 @@
   "version" "2.0.0"
   dependencies:
     "hexo-pagination" "3.0.0"
+
+"hexo-githubcalendar@^1.2.3":
+  "integrity" "sha512-xMfp2Z11F57s0/q7N9x+S2ui5dkrOiz5I3+TKPL+2IquWKj11wpaVZsPDgMxPAU8B6AYm/78S5e2APiHADPYSg=="
+  "resolved" "https://registry.npmmirror.com/hexo-githubcalendar/-/hexo-githubcalendar-1.2.3.tgz"
+  "version" "1.2.3"
 
 "hexo-i18n@^1.0.0":
   "integrity" "sha512-yw90JHr7ybUHN/QOkpHmlWJj1luVk5/v8CUU5NRA0n4TFp6av8NT7ujZ10GDawgnQEdMHnN5PUfAbNIVGR6axg=="

@@ -169,3 +169,53 @@ envelope_comment:
     comments: true
     top_img: false
     type: envelope
+
+
+
+# Ice Kano Plus_in
+# Hexo Github Canlendar
+# Author: Ice Kano
+# Modify: Lete乐特
+githubcalendar:
+  enable: true
+  enable_page: /
+  user: ekilito
+  layout:
+    type: id
+    name: recent-posts
+    index: 0
+  githubcalendar_html: '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;margin-bottom:30px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>'
+  pc_minheight: 280px
+  mobile_minheight: 0px
+  color: "['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']"
+  api: https://python-github-calendar-api.vercel.app/api
+  # api: https://python-gitee-calendar-api.vercel.app/api
+  calendar_js: https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js
+  plus_style: ""
+
+# 磁贴
+# hexo-butterfly-categories-card
+# see https://akilar.top/posts/a9131002/
+categoryBar:
+  enable: false # 开关
+  priority: 5 #过滤器优先权
+  enable_page: / # 应用页面
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  column: odd # odd：3列 | even：4列
+  row: 1 #显示行数，默认两行，超过行数切换为滚动显示
+  message:
+    - descr: Ubuntu指南
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover1.webp
+    - descr: 玩转Win10
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover2.webp
+    - descr: 长篇小说连载
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover3.webp
+    - descr: 个人日记
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp
+    - descr: 诗词歌赋
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover5.webp
+    - descr: 杂谈教程
+      cover: https://npm.elemecdn.com/akilar-candyassets/image/cover6.webp
