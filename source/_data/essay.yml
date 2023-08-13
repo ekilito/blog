@@ -7,11 +7,9 @@
   home_essay: true
   top_background: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/games.jpg # 顶部显示图片
   essay_list:
-    - content: 音乐支持了参数设置自定义歌单
-      date: 2023/08/02
+    - content: 弄两个ssh搞了这么久,睡觉
+      date: 2023/08/13 3:17:24
       link: 
-    - content: 全局音乐的动画也处理好了, nice!
-      date: 2022/11/13
     - content: 遇见彩虹🌈吃定彩虹
       date: 2022/10/23 10:00:00
       image:

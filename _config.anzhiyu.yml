@@ -173,7 +173,7 @@ avatar:
   effect: false
 
 # Disable all banner image
-disable_top_img: true   #不显示顶部图
+disable_top_img: false   #不显示顶部图
 
 # The banner image of home page
 index_img: false # "background: url() top / cover no-repeat"
@@ -442,7 +442,7 @@ footer:
   runtime:
     enable: true
     launch_time: 08/04/2023 20:00:00 # 网站上线时间
-    work_img: https://img.shields.io/badge/糖果屋-打烊了-6adea8?style=social&logo=coffeescript
+    work_img: https://img.shields.io/badge/糖果屋-营业中-6adea8?style=social&logo=cakephp
     work_description: 小小清
     offduty_img: https://img.shields.io/badge/糖果屋-打烊了-6adea8?style=social&logo=coffeescript
     offduty_description: 小小清
@@ -794,7 +794,7 @@ aside:
   hide: false
   button: true
   mobile: true # display on mobile
-  position: left # left or right
+  position: right # left or right
   display: # 控制对应详情页面是否显示侧边栏
     archive: true
     tag: true
@@ -846,9 +846,9 @@ aside:
 # busuanzi count for PV / UV in site
 # 访问人数
 busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
+  site_uv: false
+  site_pv: false
+  page_pv: false
 
 # Time difference between publish date and now (网页运行时间)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
@@ -1194,6 +1194,7 @@ inject:
   head:
     # 自定义css
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+    - <link rel="stylesheet" href="/css/custom.css">
     
     
 

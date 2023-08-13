@@ -8,7 +8,7 @@ keywords: koa,项目部署    # 文章关键字
 description:             # 页面描述
 cover: https://npm.elemecdn.com/akilar-candyassets/image/cover4.webp  # 文章缩略图
 
-aside: false # 显示侧边栏 (默认 true)
+aside: true # 显示侧边栏 (默认 true)
 toc_style_simple: # 显示 toc 简洁模式
 highlight_shrink: # 配置代码框是否展开(true/false)
 copyright_author: # 文章作者

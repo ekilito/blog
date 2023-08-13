@@ -11,7 +11,7 @@ toc_number: false
 abbrlink: 3927
 # swiper_index: 1 #   置顶轮播图顺序，非负整数，数字越大越靠前
 categories: javascript 
-aside: false # 显示侧边栏 (默认 true)
+aside: true # 显示侧边栏 (默认 true)
 swiper_index: 2
 businesscard: true # 个性名片
 ---
