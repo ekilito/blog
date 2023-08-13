@@ -25,7 +25,7 @@ nav:
     - title: 网页
       item:
         - name: 博客
-          link: https://ekilito.github.io
+          link: https://blog.wudl.cn
           icon: /img/favicon.ico
     - title: 项目
       item:
@@ -65,20 +65,20 @@ social:
 
 # 作者卡片 状态
 author_status:
-  enable: false
+  enable: true
   status: ✍️
   alias: writing_hand
-  fallback_src: https://github.githubassets.com/images/icons/emoji/unicode/270d.png
+  fallback_src: https://bu.dusays.com/2023/08/01/64c884ccc8322.png
   text: on Studying
   skills:
-    # - 🤖️ 数码科技爱好者
-    # - 🔍 分享与热心帮助
-    # - 🏠 智能家居小能手
-    # - 🔨 设计开发一条龙
-    # - 🤝 专修交互与设计
-    # - 🏃 脚踏实地行动派
-    # - 🧱 团队小组发动机
-    # - 💢 壮汉人狠话不多
+    - 🤖️ 数码科技爱好者
+    - 🔍 分享与热心帮助
+    - 🏠 智能家居小能手
+    - 🔨 设计开发一条龙
+    - 🤝 专修交互与设计
+    - 🏃 脚踏实地行动派
+    - 🧱 团队小组发动机
+    - 💢 壮汉人狠话不多
 
 # search (搜索)
 # see https://butterfly.js.org/posts/ceeb73f/#搜索系统
@@ -137,7 +137,7 @@ docsearch:
           reportMissingResultsText: '确认搜索结果是正确的？'
           reportMissingResultsLinkText: '反馈给Algolia'
 
-# Local search
+# Local search 本地搜索
 local_search:
   enable: true
   preload: false
@@ -169,11 +169,11 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg
+  img: https://bu.dusays.com/2023/08/13/64d894b14669b.webp
   effect: false
 
 # Disable all banner image
-disable_top_img: false   #不显示顶部图
+disable_top_img: false   # true不显示顶部图 
 
 # The banner image of home page
 index_img: false # "background: url() top / cover no-repeat"
@@ -191,9 +191,12 @@ cover:
   position: left
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    # - /img/default_cover.jpg
-    # - /img/default_cover.jpg
-    # - /img/default_cover.jpg 会默认随机选一张
+    https://bu.dusays.com/2023/08/13/64d894b1e3fa0.webp
+    https://bu.dusays.com/2023/08/13/64d894b2c2333.webp
+    https://bu.dusays.com/2023/08/13/64d894b2bd253.webp
+    https://bu.dusays.com/2023/08/13/64d894b30aa1b.webp
+    https://bu.dusays.com/2023/08/13/64d894b3285a5.webp
+    https://bu.dusays.com/2023/08/13/64d894b355f7d.webp # 会随机显示一张
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -204,7 +207,7 @@ error_img:
 error_404:
   enable: true
   subtitle: "请尝试站内搜索寻找文章"
-  background: https://bu.dusays.com/2023/05/08/645907596997d.gif
+  background: https://bu.dusays.com/2023/08/13/64d894b14e99d.png
 
 # 文章 meta 显示
 post_meta:
@@ -278,10 +281,10 @@ post_copyright:
 reward:
   enable: true
   QR_code:
-    - img: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/wechat.jpg
+    - img: https://bu.dusays.com/2023/08/13/64d894b4a4f06.jpg
       link:
       text: wechat
-    - img: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/alipay.jpg
+    - img: https://bu.dusays.com/2023/08/13/64d894b1726cd.jpg
       link:
       text: alipay
 
@@ -539,7 +542,7 @@ footer:
       # - link: https://beian.miit.gov.cn/
       #   text: 湘ICP备-xxxxxxx号
     subTitle:
-      enable: false
+      enable: true
       # Typewriter Effect (打字效果)
       effect: true
       # Effect Speed Options (打字效果速度参数)
@@ -557,9 +560,11 @@ footer:
       source: 1
       # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
       sub:
-        # - 生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期.
+        - 生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期.
+        - 你今天真好看！
+        - 今天也是元气满满的一天呢！
 
-# Analysis
+# Analysis 分析
 # --------------------------------------
 
 # Baidu Analytics
@@ -694,9 +699,9 @@ canvas_nest:
 # Typewriter Effect (打字效果)
 # https://github.com/disjukr/activate-power-mode
 activate_power_mode:
-  enable: false
+  enable: true
   colorful: true # open particle animation (冒光特效)
-  shake: false #  open shake (抖动特效)
+  shake: true #  open shake (抖动特效)
   mobile: false
 
 # Mouse click effects: fireworks (鼠标点击效果: 烟火特效)
@@ -803,25 +808,28 @@ aside:
     enable: true
     description: # <div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div> # 默认为站点描述
     name_link: /
-  
+  # 公告
   card_announcement:
     enable: true
-    content: 欢迎来看我的博客呀~
+    content: 🍧this is my blog~🍧
     # 公众号模块
   card_weixin:
     enable: false
     face: https://bu.dusays.com/2023/01/13/63c02edf44033.png
     backFace: https://bu.dusays.com/2023/05/13/645fa415e8694.png
+    # 文章
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
     sort: date # date or updated
     sort_order: # Don't modify the setting unless you know how it works
+    # 分类
   card_categories:
     enable: false
     limit: 8 # if set 0 will show all
     expand: none # none/true/false
     sort_order: # Don't modify the setting unless you know how it works
+    # 标签
   card_tags:
     enable: true
     limit: 40 # if set 0 will show all
@@ -830,13 +838,15 @@ aside:
     highlightTags:
       # - Hexo
       # - 前端
+      # 归档
   card_archives:
-    enable: true
+    enable: false
     type: monthly # yearly or monthly
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
     limit: 8 # if set 0 will show all
     sort_order: # Don't modify the setting unless you know how it works
+    # 网站咨询
   card_webinfo:
     enable: true
     post_count: true
@@ -1031,7 +1041,7 @@ home_top:
   timemode: date #date/updated
   title: 生活明朗
   subTitle: 万物可爱。
-  siteText: anheyu.com
+  siteText: wudl.cn
   category:
     - name: 前端
       path: /categories/技术/
@@ -1055,10 +1065,10 @@ home_top:
     swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css #swiper css依赖
     swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js #swiper js依赖
   banner:
-    tips: 新品主题
-    title: Theme-AnZhiYu
-    image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
-    link: https://docs.anheyu.com/
+    tips: 今日推荐
+    title: 今日推荐
+    image: https://bu.dusays.com/2023/08/13/64d7b6544c610.webp
+    link: /essay
 
 # 朋友圈配置
 friends_vue:
@@ -1073,7 +1083,7 @@ universe:
 
 # 页面卡片顶部气泡升起效果
 bubble:
-  enable: false
+  enable: true
 
 #  控制台打印信息
 console:
@@ -1081,9 +1091,9 @@ console:
 
 # 51a统计配置
 LA:
-  enable: false
-  ck:
-  LingQueMonitorID:
+  enable: true
+  ck: 3FXVpXQlU2qrgdld
+  LingQueMonitorID: 3FXVpXQlU2qrgdld
 
 # 标签卖萌
 diytitle:
@@ -1093,13 +1103,13 @@ diytitle:
 
 # 留言弹幕配置
 comment_barrage_config:
-  enable: false
+  enable: true
   # 同时最多显示弹幕数
   maxBarrage: 1
   # 弹幕显示间隔时间ms
   barrageTime: 4000
   # token，在控制台中获取
-  accessToken: ""
+  accessToken: "30796eace3084cff910c7e43aa524164"
   # 博主邮箱md5值
   mailMd5: ""
 
@@ -1131,30 +1141,30 @@ greetingBox:
   enable: false
   default: 晚上好👋
   list:
-    # - greeting: 晚安😴
-    #   startTime: 0
-    #   endTime: 5
-    # - greeting: 早上好鸭👋, 祝你一天好心情！
-    #   startTime: 6
-    #   endTime: 9
-    # - greeting: 上午好👋, 状态很好，鼓励一下～
-    #   startTime: 10
-    #   endTime: 10
-    # - greeting: 11点多啦, 在坚持一下就吃饭啦～
-    #   startTime: 11
-    #   endTime: 11
-    # - greeting: 午安👋, 宝贝
-    #   startTime: 12
-    #   endTime: 14
-    # - greeting: 🌈充实的一天辛苦啦！
-    #   startTime: 14
-    #   endTime: 18
-    # - greeting: 19点喽, 奖励一顿丰盛的大餐吧🍔。
-    #   startTime: 19
-    #   endTime: 19
-    # - greeting: 晚上好👋, 在属于自己的时间好好放松😌~
-    #   startTime: 20
-    #   endTime: 24
+    - greeting: 晚安😴
+      startTime: 0
+      endTime: 5
+    - greeting: 早上好鸭👋, 祝你一天好心情！
+      startTime: 6
+      endTime: 9
+    - greeting: 上午好👋, 状态很好，鼓励一下～
+      startTime: 10
+      endTime: 10
+    - greeting: 11点多啦, 在坚持一下就吃饭啦～
+      startTime: 11
+      endTime: 11
+    - greeting: 午安👋, 宝贝
+      startTime: 12
+      endTime: 14
+    - greeting: 🌈充实的一天辛苦啦！
+      startTime: 14
+      endTime: 18
+    - greeting: 19点喽, 奖励一顿丰盛的大餐吧🍔。
+      startTime: 19
+      endTime: 19
+    - greeting: 晚上好👋, 在属于自己的时间好好放松😌~
+      startTime: 20
+      endTime: 24
 
 
 # 文章顶部ai摘要
