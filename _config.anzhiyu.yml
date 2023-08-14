@@ -33,7 +33,11 @@ nav:
         - name: 图床
           link: https://image.anheyu.com/
           icon: /img/favicon.ico
-
+# mourn （哀悼日，指定日期网站简单变灰，不包括滚动条） 新加
+# 注意： 仅网站首页变灰，其他页面正常显示
+mourn:
+  enable: false
+  days: [4-5, 5-12, 7-7, 9-18, 12-13]
 # Code Blocks (代码相关)
 # --------------------------------------
 
@@ -289,13 +293,18 @@ reward:
       link:
       text: alipay
 
-# Post edit 文章编辑按钮 在文章标题旁边显示一个编辑按钮，点击会跳转到对应的链接去。
+# Post edit
 # Easily browse and edit blog source code online.
-post_edit:
+post_edit: # 目前仅可选择一个平台在线编辑
   enable: false
-  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
+  # github: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
   # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:
+  github: false
+
+  # yuque: https://www.yuque.com/user-name/repo-name/
+  # 示例: https://www.yuque.com/yuque/yuque/
+  # 你需要在语雀文章 Front Matter 添加参数 id 并确保其唯一性（例如 “id: yuque”, “id: 01”）
+  yuque: false
 
 # Related Articles 相关文章
 related_post:
@@ -381,10 +390,68 @@ waline:
   serverURL: # Waline server address url
   bg: # waline background
   pageview: false
+  meta: false # 归属地, 操作系统 前是否显示图标
+  imageUploader: true # 是否启用图片上传功能，默认开启，限制为 128kb 的 base64 图片
+  # 如果你需要启用自定义图片上传方式，请注释上方默认行为，取消下方注释，自行编写函数
+  # 并根据实际上传方式进行参数调整，以下为示例 注意 imageUploader: > 参数中的 > 不可删除
+  # imageUploader: >
+  #   function (file) {
+  #     let formData = new FormData();
+  #     let headers = new Headers();
+  #     formData.append("file", file);
+  #     formData.append("album_id", "10");
+  #     formData.append("permission", "0");
+  #     headers.append("Authorization", "Bearer 你的Token");
+  #     headers.append("Accept", "application/json");
+  #     return fetch("你的 API 上传地址", {
+  #       method: "POST",
+  #       headers: headers,
+  #       body: formData,
+  #     })
+  #       .then((resp) => resp.json())
+  #       .then((resp) => resp.data.links.url);
+  #   }
+
+  # 以下为可选配置，后续若有新增/修改配置参数可在此自行添加/修改
   option:
-    meta: ["nick", "mail", "link"]
+    pageSize: 10
+    requiredMeta: ["nick", "mail"]
+    login: enable
+    copyright: true
+    # turnstileKey: 
     locale:
-      placeholder: 生活明朗，万物可爱
+      admin: 安知鱼
+      sofa: 欢迎使用 安知鱼 主题！
+      placeholder: "生活明朗，万物可爱"
+    #   reactionTitle: 就现在，表明你的态度！
+    #   reaction0: 0
+    #   reaction1: 1
+    #   reaction2: 2
+    #   reaction3: 3
+    #   reaction4: 4
+    #   reaction5: 5
+    #   level0: 0
+    #   level1: 1
+    #   level2: 2
+    #   level3: 3
+    #   level4: 4
+    #   level5: 5
+    #   level6: 6
+    #   level7: ...
+    # emoji:
+    #   [
+    #     "https://example.com/.../Sticker-100/",
+    #   ]
+    # reaction:
+    #   [
+    #     "https://example.com/.../Sticker-100/0.png",
+    #     "https://example.com/.../Sticker-100/1.png",
+    #     "https://example.com/.../Sticker-100/2.png",
+    #     "https://example.com/.../Sticker-100/3.png",
+    #     "https://example.com/.../Sticker-100/4.png",
+    #     "https://example.com/.../Sticker-100/5.png",
+    #   ]
+
 
 # Twikoo
 # https://github.com/imaegoo/twikoo
@@ -841,7 +908,7 @@ aside:
       # - 前端
       # 归档
   card_archives:
-    enable: false
+    enable: true
     type: monthly # yearly or monthly
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
@@ -871,7 +938,7 @@ runtimeshow:
 newest_comments:
   enable: true
   sort_order: # Don't modify the setting unless you know how it works
-  limit: 3
+  limit: 6
   storage: 10 # unit: mins, save data to localStorage
   avatar: true
 
@@ -1140,7 +1207,7 @@ ptool:
 
 # 欢迎语配置
 greetingBox:
-  enable: false
+  enable: true
   default: 晚上好👋
   list:
     - greeting: 晚安😴
@@ -1198,6 +1265,11 @@ linkPageTop:
 
 # 缩略图后缀 archive/tag/category 页面单独开启后缀
 pageThumbnailSuffix: ''
+
+# 隐私协议弹窗 / 新加
+agreementPopup:
+  enable: false
+  url: /privacy
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)

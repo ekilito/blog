@@ -5,14 +5,15 @@
       border: none;
 #aside-content
   width: 300px
+  animation: slide-in 0.6s 0.3s backwards;
 
-  +minWidth900()
+  +minWidth1200()
     if hexo-config('aside.position') == 'right'
       padding-left: 15px
     else
       padding-right: 15px
 
-  +maxWidth900()
+  +maxWidth1200()
     width: 100%
     padding: 20px;
 
@@ -22,7 +23,7 @@
   > .card-widget:first-child
     margin-top: 0
 
-    +maxWidth900()
+    +maxWidth1200()
       margin-top: 20px
     +maxWidth768()
       margin-top: 0px
@@ -66,6 +67,7 @@
       opacity: 0;
       transition: .3s;
       pointer-events: none
+      color: var(--anzhiyu-white);
 
     .banner-button-group .banner-button 
       padding: 20px 12px;
@@ -83,13 +85,14 @@
       .author-status-box
         position: absolute;
         bottom: 0;
-        left: calc(100% - 28px);
-        width: 28px;
-        height: 28px;
+        left: calc(100% - 33px);
+        width: 33px;
+        height: 33px;
         border-radius: 2em;
         background-color: var(--anzhiyu-white);
-        transition: 0.3s;
         overflow: hidden;
+        transition: .3s .2s;
+        transform: scale(1);
         &:hover
           width: 105px
           .author-status span
@@ -100,8 +103,15 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 28px;
-          padding: 0 5px;
+          height: 100%;
+          width: 100%;
+          g-emoji
+            font-size: 25px;
+            display: flex
+            justify-content: center
+            align-items: center
+            margin-top: 2px;
+            margin-left: 0.38px;
           span 
             width: 0;
             font-size: 12px;
@@ -110,7 +120,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             transition: 0.3s;
-            line-height: 28px;
+            line-height: 33px;
 
     
     [data-theme="dark"] .card-info-avatar .author-status-box
@@ -174,7 +184,7 @@
       margin-left: 6px
 
   .sticky_layout
-    +minWidth900()
+    +minWidth1200()
       position: sticky
       position: -webkit-sticky
       top: 20px
@@ -262,10 +272,9 @@
       flex-direction: row
       padding: 3px 10px
       color: var(--font-color)
-      transition: all .4s
+      transition: all .2s
 
       &:hover
-        padding: 3px 17px
         background-color: var(--text-bg-hover)
 
       span
@@ -330,7 +339,7 @@
     +minWidth901()
       right: 0 !important
 
-    +maxWidth900()
+    +maxWidth1200()
       position: fixed
       right: -100%
       bottom: 30px
@@ -356,7 +365,7 @@
       margin: 0 -24px
       max-height: calc(100vh - 120px)
 
-      +maxWidth900()
+      +maxWidth1200()
         max-height: calc(100vh - 140px)
 
       & > *
@@ -371,7 +380,7 @@
         .toc-child
           display: none
 
-          +maxWidth900()
+          +maxWidth1200()
             display: block !important
 
         .toc-item
@@ -479,7 +488,7 @@
   100%
     transform: scale(.7)
 
-+minWidth900()
++minWidth1200()
   html.hide-aside
     .layout
       justify-content: center
@@ -489,7 +498,13 @@
 
       > div:first-child
         width: 80%
-
++maxWidth1200()
+  .aside-content
+    max-width: none !important;
+    display: none
++maxWidth768()
+  .aside-content
+    display: block
 .page
   .sticky_layout
     display: flex

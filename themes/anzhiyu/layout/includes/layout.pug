@@ -12,6 +12,8 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     #an_music_bg
     if theme.preloader.enable
       !=partial('includes/loading/index', {}, {cache: true})
+    if (theme.mourn.enable && is_home_first_page())
+      include ./mourn.pug
     #web_box
       #web_container
         #menu-mask
@@ -60,6 +62,21 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
 
             footer#footer(style=footer_bg)
               !=partial('includes/footer', {}, {cache: true})
+            
+            if (theme.agreementPopup && theme.agreementPopup.enable && is_home_first_page())
+              - let agreementPopupUrl = theme.agreementPopup.url
+              script(defer).
+                var hasShownPopup = sessionStorage.getItem('sessionNegotiatePopupShown');
+
+                if (!hasShownPopup) {
+                  setTimeout(() => {
+                    anzhiyuPopupManager && anzhiyuPopupManager.enqueuePopup('协议提醒助手', '查看本站为你的个人隐私做出的努力', '#{agreementPopupUrl}', 10000);
+
+                    // 将会话弹窗状态记录到sessionStorage中
+                    sessionStorage.setItem('sessionNegotiatePopupShown', 'true');
+                  }, 1000);
+                }
+
         else
           include ./404.pug
 
@@ -76,3 +93,6 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     if (theme.nav.clock)
       !=partial('includes/anzhiyu/clock', {}, {cache:true})
     include ./additional-js.pug
+
+    //- 弹窗通知
+    !=partial('includes/popup/index', {}, {cache: true})
