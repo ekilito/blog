@@ -10,9 +10,22 @@ if site.data.about
     - let careers = item.careers
     #about-page
       .author-box
+        .author-tag-left
+          span.author-tag 💻️ 前端开发工程师
+          span.author-tag 🤖️ 数码科技爱好者
+          span.author-tag 🏠 智能家居小能手
+          span.author-tag 🙅‍♂ 甜食坚决抵制者
+          span.author-tag 🔨 折腾研究不停息
         .author-img
           img.no-lightbox(src=url_for(avatarImg) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
         .image-dot
+        .author-tag-right
+          span.author-tag 大海的忠实听众 🌊
+          span.author-tag 一腔热血好青年 🔥
+          span.author-tag 人间美好捕捉师 📸
+          span.author-tag 雨中漫步独欢喜 🌦️
+          span.author-tag 热爱自由与和平 🕊️
+            
       p.p.center.logo.large 关于我
       p.p.center.small=subtitle
       .author-content

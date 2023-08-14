@@ -624,9 +624,9 @@ site_verification:
 
 theme_color:
   enable: true
-  main: "#F2729E" # #3b70fc
+  main: "#3eb8be" # #3b70fc
   dark_main: "#f2b94b"
-  paginator: "#F2729E" #3b70fc 分页
+  paginator: "#3eb8be" #3b70fc 分页
   #   button_hover: "#FF7242"
   text_selection: "#2128bd"
   link_color: "var(--anzhiyu-fontcolor)"
@@ -634,7 +634,7 @@ theme_color:
   hr_color: "#4259ef23"
   code_foreground: "#fff"
   code_background: "var(--anzhiyu-code-stress)"
-  toc_color: "#F2729E" #3b70fc
+  toc_color: "#3eb8be" #3b70fc
   #   blockquote_padding_color: "#3b70fc"
   #   blockquote_background_color: "#3b70fc"
   scrollbar_color: "var(--anzhiyu-scrollbar)"
@@ -735,7 +735,7 @@ display_mode: light
 beautify:
   enable: true
   field: post # site/post
-  title-prefix-icon: '\f0c1'
+  title-prefix-icon: '\f863' # 小风车
   title-prefix-icon-color: "#F47466"
 
 # Global font settings
@@ -1208,7 +1208,7 @@ inject:
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
     - <link rel="stylesheet" href="/css/custom.css">
     - <link rel="stylesheet" href="/css/cursur.css"> # 指针
-    
+    - <link rel="stylesheet" href="/css/fenleiye.css"> # 分类页
     
 
   bottom:
@@ -1219,6 +1219,7 @@ inject:
     - <script src="/js/cursur.js"></script> # 指针
     #- <script src="/js/welcome.js"></script> # snackbar提示框
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> # jquery
+
 
 
 # CDN
