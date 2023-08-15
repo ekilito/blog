@@ -6,17 +6,19 @@ menu:
   友链:
     友人帐: /link/ || anzhiyu-icon-link
     朋友圈: /fcircle/ || anzhiyu-icon-artstation
-    留言板: /comments/ || anzhiyu-icon-envelop
+    留言板: /comments/ || anzhiyu-icon-envelope
   我的:
     音乐馆: /music/?id=891137324&server=netease || anzhiyu-icon-music
     追番页: /bangumis/ || anzhiyu-icon-bilibili
     相册集: /album/ || anzhiyu-icon-images
-    小空调: /kongtiao/ || anzhiyu-icon-fa
+    小空调: /kongtiao/ || anzhiyu-icon-fan
     早报: /zaobao/  
   关于:
     关于本人: /about/ || anzhiyu-icon-paper-plane
     闲言碎语: /essay/ || anzhiyu-icon-lightbulb
     随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints
+
+    
 # nav相关配置
 nav:
   enable: true
@@ -27,6 +29,9 @@ nav:
       item:
         - name: 博客
           link: https://blog.wudl.cn
+          icon: /img/favicon.ico
+        - name: 小清
+          link: https://ccv-engineer.gitee.io/
           icon: /img/favicon.ico
     - title: 项目
       item:
@@ -63,10 +68,10 @@ social:
   github: https://github.com/ekilito || icon-github 
   #qq邮箱: mailto:2856509748@qq.com || icon-youxiang 
   B站: https://space.bilibili.com/194984444 || icon-bilibili 
-  #微信: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/weixinhao.jpg || icon-weixin 
-  #QQ: https://res.abeim.cn/api/qq/?qq=2856509748 || icon-qq 
-  #微博: https://m.weibo.cn/u/7520593701 || icon-weibo 
-  #网易云: https://music.163.com/#/user/home?id=573476405 || icon-yinle 
+  微信: https://cdn.jsdelivr.net/gh/ekilito/picgoblog/img/weixinhao.jpg || icon-weixin 
+  QQ: https://res.abeim.cn/api/qq/?qq=2856509748 || icon-qq 
+  微博: https://m.weibo.cn/u/7520593701 || icon-weibo 
+  网易云: https://music.163.com/#/user/home?id=573476405 || icon-yinle 
 
 # 作者卡片 状态
 author_status:
@@ -1291,7 +1296,8 @@ inject:
     - <script src="/js/cursur.js"></script> # 指针
     #- <script src="/js/welcome.js"></script> # snackbar提示框
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> # jquery
-
+    - <script src="/js/fps.js"></script> #fps
+    - <div id="fps"></div> #fps
 
 
 # CDN

@@ -554,3 +554,82 @@ h6::before {
     background: var(--guole-secondbg);
     user-select: none;
 } */
+
+
+/* 404 */
+
+#error-wrap .error-content .error-img {
+    height: 80%;
+    width: 520px!important;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-position: center center;
+    background-size: cover;
+    background-color: #fff!important;
+}
+
+
+/* 即刻说说 */
+
+#bber .bber-item {
+    border-radius: 25px;
+    border: 1px solid rgba(169, 169, 169, 0.7)!important;
+}
+
+#bber .bber-item:hover {
+    border: 1px solid rgba(169, 169, 169, 0.9)!important;
+}
+
+
+/* 
+
+
+
+fps
+
+*/
+
+#fps {
+    position: fixed;
+    right: 10px;
+    bottom: 4px;
+    z-index: 1919810;
+}
+
+[data-theme="light"] #fps {
+    background-color: var(--lyx-white-acrylic1);
+    padding: 4px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] #fps {
+    background-color: var(--lyx-black-acrylic1);
+    padding: 4px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+}
+
+
+/* 关于 */
+
+.myInfoAndSayHello {
+    background: linear-gradient(120deg, #7360bb 0, #50a9bb 100%)!important;
+    /*  animation: gradientl 15s ease infinite; */
+    font-family: ZhuZiAYuanJWD;
+}
+
+@keyframes gradientl {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+
+/* //background: linear-gradient(60deg, var(--ichika-color) 0, rgba(255, 255, 255, .7) 100%)!important; */
