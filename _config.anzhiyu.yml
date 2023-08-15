@@ -36,7 +36,7 @@ nav:
     - title: 项目
       item:
         - name: 图床
-          link: https://image.anheyu.com/
+          link: https://7b.top/
           icon: /img/favicon.ico
 # mourn （哀悼日，指定日期网站简单变灰，不包括滚动条） 新加
 # 注意： 仅网站首页变灰，其他页面正常显示
@@ -179,7 +179,7 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: https://bu.dusays.com/2023/08/13/64d894b14669b.webp
+  img: https://bu.dusays.com/2023/08/14/64d9d5100e495.jpg
   effect: false
 
 # Disable all banner image
@@ -217,7 +217,7 @@ error_img:
 error_404:
   enable: true
   subtitle: "请尝试站内搜索寻找文章"
-  background: https://bu.dusays.com/2023/08/13/64d894b14e99d.png
+  background: https://bu.dusays.com/2023/05/08/645907596997d.gif
 
 # 文章 meta 显示
 post_meta:
@@ -712,7 +712,7 @@ theme_color:
   scrollbar_color: "var(--anzhiyu-scrollbar)"
   meta_theme_color_light: "#f7f9fe"
   meta_theme_color_dark: "#18171d"
-  inside_sidebar_background: "#607d8b" # @since 1.5.4 支持手机端侧边栏可定制颜色
+  inside_sidebar_background: "linear-gradient( -45deg, #e8d8b9, #eccec5, #a3e9eb, #bdbdf0, #eec1ea);" # @since 1.5.4 支持手机端侧边栏可定制颜色
 
 # 文章h2添加分隔线
 h2Divider: false
@@ -863,7 +863,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: # 自定义头像
+  avatar: https://bu.dusays.com/2023/08/14/64d9d5100e495.jpg # 自定义头像
 
 # aside (侧边栏)
 # --------------------------------------

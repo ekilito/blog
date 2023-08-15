@@ -558,7 +558,8 @@ h6::before {
 
 /* 404 */
 
-#error-wrap .error-content .error-img {
+
+/* #error-wrap .error-content .error-img {
     height: 80%;
     width: 520px!important;
     border-top-left-radius: 8px;
@@ -566,7 +567,7 @@ h6::before {
     background-position: center center;
     background-size: cover;
     background-color: #fff!important;
-}
+} */
 
 
 /* 即刻说说 */
