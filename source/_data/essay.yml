@@ -7,21 +7,24 @@
   home_essay: true
   top_background: https://bu.dusays.com/2023/08/13/64d8d295bd409.jpg # 顶部显示图片
   essay_list:
+    - content: vsCode 启动！
+      date: 2023/08/16 16:48:24
+    - content: 明天回家啦！
+      date: 2023/08/15 02:25:15
+    - content: 用了一个去不图床，还挺不错!
+      date: 2023/08/13 17:20:17
     - content: 弄两个ssh搞了这么久,睡觉
       date: 2023/08/13 3:17:24
       link: 
-    - content: 用了一个去不图床，还挺不错!
-      date: 2023/08/13 17:20:17
     - content: 遇见彩虹🌈吃定彩虹
-      date: 2023/08/13 10:00:00
+      date: 2023/08/12 10:00:00
       image:
         #- https://bu.dusays.com/2023/04/09/6432939996dd7.webp
     - content: ThreeJs API真多丫
-      date: 2022/10/19
+      date: 2023/08/06
     - content: 歌曲推荐
-      date: 2023/08/14
+      date: 2023/08/04
       aplayer:
         server: netease
         id: 1403318151
-    - content: 明天回家啦！
-      date: 2023/08/15 02:25:15
+    

@@ -2,8 +2,8 @@
 title: 在nodejs环境中应用并代理跨域
 date: 2023-08-07 22:19:00
 updated:             	 # 文章更新日期
-tags: 技术                # 文章标签
-categories: 技术             # 文章分类
+tags: koa                # 文章标签
+categories: 前端            # 文章分类
 keywords: koa,项目部署    # 文章关键字
 description:             # 页面描述
 cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp  # 文章缩略图

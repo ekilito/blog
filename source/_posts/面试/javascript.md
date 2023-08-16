@@ -1,19 +1,19 @@
 ---
-title: javascript面试题
+title: JS面试
 data: 2023-8-05 12:25:00
 description: 每天一道面试题。
-tags: javascript
+tags: [js面试题,闭包]
 keywords: js面试题,前端
-sticky: 1 # 数字越大，置顶优先
+sticky:  # 数字越大，置顶优先
 cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp
 copyright: true
 toc_number: false
 abbrlink: 3927
 # swiper_index: 1 #   置顶轮播图顺序，非负整数，数字越大越靠前
-categories: javascript 
+categories: 面试 
 aside: true # 显示侧边栏 (默认 true)
 swiper_index: 2
-businesscard: true # 个性名片
+
 ---
 
 ## 1. 谈谈你对闭包的理解？
@@ -120,6 +120,18 @@ for(var i = 1 ; i <= 5 ; i++) {
    }, i * 1000)
    })(i)
 }
+```
+
+```javascript
+// 以下代码有没有闭包
+function outer() {
+    let age = 18
+    function inner() {
+        console.log(age)
+    }
+    inner()  // 闭包 和return 无关 一般用外部函数命名  内部函数访问了外部函数作用域里的变量
+}            // 一般会 return 出去。但是闭包 !== return
+outer()
 ```
 
 
