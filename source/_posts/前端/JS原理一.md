@@ -8,7 +8,7 @@ sticky:  # 数字越大，置顶优先
 cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp
 copyright: true
 toc_number: false
-
+abbrlink: 882eae
 # swiper_index: 1 #   置顶轮播图顺序，非负整数，数字越大越靠前
 categories: 前端
 aside: true # 显示侧边栏 (默认 true)
