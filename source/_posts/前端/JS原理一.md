@@ -20,6 +20,11 @@ swiper_index:
 
 ### 知识点自测
 
+
+{% tabs test %}
+
+<!-- tab call🍧 -->
+
 1. 函数的`call`方法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
 
 ```javascript
@@ -37,6 +42,10 @@ const obj = {
 func.call(obj,'kilito','咖啡')
 ```
 
+<!-- endtab -->
+
+<!-- tab apply🍧 -->
+
 2. 函数的`apply`方法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
 
 ```javascript
@@ -53,6 +62,10 @@ const obj = {
 //       参数2: 以数组的形式传入参数
 func.apply(obj,['xiaoqing','咖啡'])
 ```
+
+<!-- endtab -->
+
+<!-- tab bind🍧 -->
 
 3. 函数的`bind`方法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
@@ -72,6 +85,9 @@ bindFunc('可乐')
 // bindFunc('花菜',可乐')
 ```
 
+<!-- endtab -->
+
+<!-- tab 剩余参数🍧 -->
 4. 剩余参数-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions#%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0)
 
 ```javascript
@@ -80,7 +96,9 @@ function func(...args){
 }
 func('西蓝花','西葫芦','西洋参','西芹')
 ```
+<!-- endtab -->
 
+<!-- tab Promise🍧 -->
 5. Promise核心用法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises)
 
 ```javascript
@@ -100,7 +118,8 @@ p.then(res => {
   console.log(err)
 })
 ```
-
+<!-- endtab -->
+<!-- tab URLSearchParams🍧 -->
 6. URLSearchParams核心用法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams)
 
 ```javascript
@@ -109,7 +128,8 @@ const params = new URLSearchParams({ name: 'jack', age: 18 })
 // toString方法 返回搜索参数组成的字符串，可直接使用在 URL 上。
 console.log(params.toString())
 ```
-
+<!-- endtab -->
+<!-- tab Object.create🍧 -->
 7. Object.create核心用法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
 ```javascript
@@ -123,8 +143,10 @@ console.log(params.toString())
   clone.foods.push('西北风')
   console.log(clone.foods === person.foods)// true
 ```
+<!-- endtab -->
 
-7. Object.assign核心用法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+<!-- tab Object.assign🍧 -->
+8. Object.assign核心用法-[文档链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
 ```javascript
   const person = {
@@ -144,8 +166,34 @@ console.log(params.toString())
   console.log(son.foods === person.foods)// true
 ```
 
+<!-- endtab -->
+
+{% endtabs %}
 
 
+{% tabs xmind %}
+
+<!-- tab this🍧 -->
+![xmthis.png](https://bu.dusays.com/2023/08/17/64dda1ff4a71d.png)
+<!-- endtab -->
+
+<!-- tab 继承🍧 -->
+![xmjichen.png](https://bu.dusays.com/2023/08/17/64dd8a4e42783.png)
+<!-- endtab -->
+
+<!-- tab class🍧 -->
+![xmclass.png](https://bu.dusays.com/2023/08/17/64dd8a44529ff.png)
+<!-- endtab -->
+
+<!-- tab fetch🍧 -->
+![xmfetch.png](https://bu.dusays.com/2023/08/17/64dd8a48a0993.png)
+<!-- endtab -->
+
+<!-- tab geneator🍧 -->
+![xmgeneator.png](https://bu.dusays.com/2023/08/17/64dd8a435f5dc.png)
+<!-- endtab -->
+
+{% endtabs %}
 
 
 ## JS中的this

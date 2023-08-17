@@ -133,6 +133,60 @@ function outer() {
 }            // 一般会 return 出去。但是闭包 !== return
 outer()
 ```
+1. 
+
+```html
+  <button class="getWeather">天气查询</button>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>
+  <script>
+    /**
+     * 需求：流程控制，依次查询，北上广深的天气预报
+     * 参考code: 北京 110100  上海 310100  广州 440100 深圳 440300
+     * 接口文档: https://apifox.com/apidoc/project-1937884/api-49760220
+     * */
+    function* weatherGenerator() {
+      // yield 会暂停代码的执行
+      // 北京
+      yield axios('http://hmajax.itheima.net/api/weather?city=110100')
+      // 上海
+      yield axios('http://hmajax.itheima.net/api/weather?city=310100')
+      // 广州
+      yield axios('http://hmajax.itheima.net/api/weather?city=440100')
+      // 深圳
+      yield axios('http://hmajax.itheima.net/api/weather?city=440300')
+    }
+
+    const cityWeather = weatherGenerator()
+    
+    //const response = weather.next()
+    // 继续 .then
+    //response.value.then(res => {
+    //   console.log(res)
+    //})
+    
+    document.querySelector('.getWeather').addEventListener('click', async () => {
+      const res = await genCity.next()
+      console.log(res)
+    })
+  </script>
+```
+
+
+
+
+
+## 2. async函数阻塞
+
+   1. async函数内部可以使用await 等待promise执行完毕,内部是阻寒的
+
+   2. 但是async函数不会阻塞同级代码的执行,除非用async西数再包一层
+
+   3. 比如,我之前在做导航守卫判断的时候,有一个逻辑
+
+      1. action获取用户信息
+      2. 基于用户信息判断是否登录
+      3. 最开始没有写 {% label await red %} ,导致第一次判断不通过,第二次才可
+
 
 
 
