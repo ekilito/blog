@@ -1150,9 +1150,9 @@ home_top:
 
 # 朋友圈配置
 friends_vue:
-  enable: false
-  vue_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.1.1/friends/index.4f887d95.js
-  apiurl: # 朋友圈后端地址
+  enable: true
+  vue_js: /js/friend.js
+  apiurl: https://puquan.wudl.cn/ # 朋友圈后端地址
   top_background:
 
 # 黑色模式粒子效果canvas
@@ -1302,7 +1302,7 @@ inject:
     - <script type="text/javascript" src="https://unpkg.zhimg.com/jquery@latest/dist/jquery.min.js"></script> # jquery
     - <script src="/js/fps.js"></script> #fps
     - <div id="fps"></div> #fps
-
+ 
 
 # CDN
 # Don't modify the following settings unless you know how they work
