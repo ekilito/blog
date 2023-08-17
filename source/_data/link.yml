@@ -2,6 +2,22 @@
   flink_style: telescopic
   hundredSuffix: ""
   link_list:
+    - name: kilito
+      link: https://blog.wudl.cn/
+      avatar: https://bu.dusays.com/2023/08/14/64d9d5100e495.jpg
+      descr: 今天也是元气满满的一天
+      siteshot: https://bu.dusays.com/2023/08/17/64ddf36ad5ec3.png
+      color: vip
+      tag: 技术
+
+    - name: 幻梦晓寒-HACKFOX
+      link: https://xiaohan.xfcloud.org
+      avatar: https://f003.backblazeb2.com/file/pic-pan/1681579785696.jpg
+      descr: 愿此生，无悔
+      siteshot: https://bu.dusays.com/2023/08/17/64ddf5639fa2f.png
+      color:
+      tag: 技术
+
     - name: 安知鱼
       link: https://blog.anheyu.com/
       avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg
@@ -51,7 +67,7 @@
 
 - class_name: 小伙伴
   class_desc: 那些人，那些事
-  flink_style: anzhiyu
+  flink_style: 
   link_list:
     - name: 安知鱼
       hundredSuffix: ""
