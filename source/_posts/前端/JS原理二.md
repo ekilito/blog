@@ -297,7 +297,6 @@ p.then(res => {
 ```
 
 
-
 ### 手写Promise-构造函数
 
 **需求:**
@@ -414,7 +413,6 @@ class MyPromise {
 
 
 
-
 ### 手写Promise-then方法的核心功能
 
 **需求:**
@@ -493,3 +491,664 @@ class MyPromise {
 
 ![promise3.png](https://bu.dusays.com/2023/08/17/64de33344950c.png)
 
+### 手写Promise-then方法支持异步和多次调用（非链式）
+
+**需求:**
+
+1. 实例化传入的回调函数,内部支持异步操作
+2. then方法支持多次调用
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve('成功结果')
+    reject('失败原因')
+  }, 2000)
+})
+
+p.then(res => {
+  console.log('success1:', res)
+}, err => {
+  console.log('error1:', err)
+})
+p.then(res => {
+  console.log('success2:', res)
+}, err => {
+  console.log('error2:', err)
+})
+p.then(res => {
+  console.log('success3:', res)
+}, err => {
+  console.log('error3:', err)
+})
+```
+
+**核心步骤:**
+
+1. 定义属性,保存传入的回调函数:[]
+2. 调用`then`方法并且状态为`pending`时保存传入的成功/失败回调函数
+3. 调用`resolve`和`reject`时执行上一步保存的回调函数
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+class MyPromise {
+  state = PENDING
+  result = undefined
+  // 1. 添加handlers属性保存then方法添加的回调函数
+  handlers = []
+
+  constructor(executor) {
+    const resolve = (result) => {
+      this.#changeState(FULFILLED, result)
+      // 调用保存在handlers中的回调函数
+      // 从开头部分取出回调函数执行
+      // while(this.handlers.length > 0) {
+      //    通过解构获取对应的回调函数
+      //    const { onFulfilled } = this.handlers.shift()
+      //    onFulfilled(this.result)
+      // }
+      
+      // 4. 调用runHandlers 执行回调函数
+      this.#runHandlers()
+    }
+    const reject = (result) => {
+      this.#changeState(REJECTED, result)
+      // 4. 调用runHandlers 执行回调函数
+      this.#runHandlers()
+    }
+    executor(resolve, reject)
+  }
+
+  // 3. 抽取方法 执行 fulfilled/rejected状态时的回调函数
+  #runHandlers() {
+    while (this.handlers.length > 0) {
+      const { onFulfilled, onRejected } = this.handlers.shift()
+      if (this.state === FULFILLED) {
+          // 成功
+         onFulfilled(this.result)
+      } else {
+          // 失败
+         onRejected(this.result)
+      }
+    }
+  }
+
+
+  #changeState(state, result) {
+    if (this.state !== PENDING) {
+      return
+    }
+    this.state = state
+    this.result = result
+  }
+  
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
+    if (this.state === FULFILLED) {
+      onFulfilled(this.result)
+    } else if (this.state === REJECTED) {
+      onRejected(this.result)
+    } else {
+      // 2. 状态为 pending 时,状态还没改变，回调函数还不能执行，将回调函数添加到数组中
+      this.handlers.push({
+        onFulfilled, onRejected
+      })
+    }
+  }
+}
+```
+
+
+
+
+
+### 手写Promise-链式编程-成功状态+普通返回值
+
+**需求:**
+
+1. `then`的链式编程
+2. 目前只考虑`resolve`内部返回普通值的情况
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  resolve(1)
+})
+p.then(res => {
+  console.log(res)
+  return 2
+}).then(res => {
+  console.log(res)
+  return 3
+}).then(res => {
+  console.log(res)
+  return 4
+})
+```
+
+**核心步骤:**
+
+1. 调整`then`方法，返回一个新的`MyPromise`对象
+2. 内部获取`onFulfilled`的执行结果,传入`resolve`方法继续执行
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+class MyPromise {
+  state = PENDING
+  result = undefined
+  handlers = []
+
+  constructor(executor) {
+    const resolve = (result) => {
+      this.#changeState(FULFILLED, result)
+      this.#runHandlers()
+    }
+    const reject = (result) => {
+      this.#changeState(REJECTED, result)
+      this.#runHandlers()
+    }
+    executor(resolve, reject)
+  }
+
+  #runHandlers() {
+    while (this.handlers.length > 0) {
+      const { onFulfilled, onRejected } = this.handlers.shift()
+      if (this.state === FULFILLED) {
+         onFulfilled(this.result)
+      } else {
+         onRejected(this.result)
+      }
+    }
+  }
+
+
+  #changeState(state, result) {
+    if (this.state !== PENDING) {
+      return
+    }
+    this.state = state
+    this.result = result
+  }
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
+    // 1. 创建并返回新的Promise对象
+    const p2 = new MyPromise((resolve, reject) => {
+      if (this.state === FULFILLED) {
+          // 成功状态
+        const res = onFulfilled(this.result)
+        // 2. 继续调用resolve方法 then方法返回的Promise对象的resolve
+        // 传递成功的结果给下一个 then
+        resolve(res)
+      } else if (this.state === REJECTED) {
+        onRejected(this.result)
+      } else {
+        this.handlers.push({
+          onFulfilled, onRejected
+        })
+      }
+    })
+    return p2
+  }
+}
+```
+
+![promise4.png](https://bu.dusays.com/2023/08/18/64df4c7cc60ec.png)
+
+
+![promise5.png](https://bu.dusays.com/2023/08/18/64df4c7da4b18.png)
+
+![promise6.png](https://bu.dusays.com/2023/08/18/64df4c7569adf.png)
+
+### 手写Promise-链式编程-成功状态+返回Promise
+
+**需求:**
+
+1. `then`的链式编程
+2. 目前考虑`resolve`内部返回`MyPromise`的情况
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  resolve(1)
+})
+p.then(res => {
+  console.log(res)
+  return new MyPromise((resolve, reject) => {
+    resolve(2)
+  })
+}).then(res => {
+  console.log(res)
+  return new MyPromise((resolve, reject) => {
+    resolve(3)
+  })
+}).then(res => {
+  console.log(res)
+})
+```
+
+**核心步骤:**
+
+1. 内部获取`onFulfilled`的执行结果:
+2. 如果是`MyPromise`实例，继续`then`下去并传入`resolve`和`reject`
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+class MyPromise {
+  state = PENDING
+  result = undefined
+  handlers = []
+
+  constructor(executor) {
+    const resolve = (result) => {
+      this.#changeState(FULFILLED, result)
+      this.#runHandlers()
+    }
+    const reject = (result) => {
+      this.#changeState(REJECTED, result)
+      this.#runHandlers()
+    }
+    executor(resolve, reject)
+  }
+
+  #runHandlers() {
+    while (this.handlers.length > 0) {
+      const { onFulfilled, onRejected } = this.handlers.shift()
+      if (this.state === FULFILLED) {
+         onFulfilled(this.result)
+      } else {
+         onRejected(this.result)
+      }
+    }
+  }
+
+
+  #changeState(state, result) {
+    if (this.state !== PENDING) {
+      return
+    }
+    this.state = state
+    this.result = result
+  }
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {throw reason}
+    const p2 = new MyPromise((resolve, reject) => {
+      if (this.state === FULFILLED) {
+        const res = onFulfilled(this.result)
+        // 1. 判断是否为MyPromise的实例
+        if (res instanceof MyPromise) {
+          // 2. 继续调用then方法 传入 resolve 和 reject
+          res.then(resolve, reject)
+        } else {
+          resolve(res)
+        }
+      } else if (this.state === REJECTED) {
+        onRejected(this.result)
+      } else {
+        this.handlers.push({
+          onFulfilled, onRejected
+        })
+      }
+    })
+    return p2
+  }
+}
+```
+
+![promise7.png](https://bu.dusays.com/2023/08/18/64df4c7a1e191.png)
+
+![promise8.png](https://bu.dusays.com/2023/08/18/64df4c7b1b34c.png)
+
+![promise9.png](https://bu.dusays.com/2023/08/18/64df4c7da8e76.png)
+
+### 手写Promise-链式编程-失败状态
+
+**需求:**
+
+1. `then`的第二个回调函数，执行`reject`时的链式编程
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  resolve(1)
+})
+
+p.then(res => {
+  console.log(res)
+  return new MyPromise((resolve, reject) => {
+    reject(2)
+  })
+}).then(undefined, err => {
+  console.log('err:', err)
+})
+```
+
+**核心步骤:**
+
+1. 参考`resolve`的逻辑
+2. 先实现功能,再抽取为函数直接调用
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+class MyPromise {
+  state = PENDING
+  result = undefined
+  handlers = []
+
+  constructor(executor) {
+    const resolve = (result) => {
+      this.#changeState(FULFILLED, result)
+      this.#runHandlers()
+    }
+    const reject = (result) => {
+      this.#changeState(REJECTED, result)
+      this.#runHandlers()
+    }
+    executor(resolve, reject)
+  }
+
+  #runHandlers() {
+    while (this.handlers.length > 0) {
+      const { onFulfilled, onRejected } = this.handlers.shift()
+      if (this.state === FULFILLED) {
+         onFulfilled(this.result)
+      } else {
+         onRejected(this.result)
+      }
+    }
+  }
+
+
+  #changeState(state, result) {
+    if (this.state !== PENDING) {
+      return
+    }
+    this.state = state
+    this.result = result
+  }
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {
+      throw reason;
+    };
+    const p2 = new MyPromise((resolve, reject) => {
+      if (this.state === FULFILLED) {
+        // const res = onFulfilled(this.result)
+        // if (res instanceof MyPromise) {
+        //   res.then(resolve, reject)
+        // } else {
+        //   resolve(res)
+        // }
+        this.#runPromise(onFulfilled, resolve, reject)
+      } else if (this.state === REJECTED) {
+        // 1. 参考成功状态的逻辑实现 失败状态
+        // const res = onRejected(this.result)
+        // if (res instanceof MyPromise) {
+        //   res.then(resolve, reject)
+        // } else {
+        //   reject(res)
+        // }
+        this.#runPromise(onRejected, resolve, reject)
+      } else {
+        this.handlers.push({
+          onFulfilled, onRejected
+        })
+      }
+    })
+    return p2
+  }
+  // 2. 抽取 then中的逻辑，并替换掉原本代码
+  #runPromise(callback, resolve, reject) {
+     // 调用回调函数 获取执行的结果
+    const res = callback(this.result) 
+    if (res instanceof MyPromise) {
+        // res 是promise对象 then 方法
+      res.then(resolve, reject)
+    } else {
+      this.state === FULFILLED ? resolve(res) : reject(res)
+    }
+  }
+}
+```
+
+
+
+
+
+### 手写Promise-链式编程-支持异步
+
+**需求:**
+
+1. 执行异步操作时，支持链式编程
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1)
+  }, 2000)
+})
+
+p.then(res => {
+  console.log(res)
+  return new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      reject(2)
+    }, 2000)
+  })
+})
+    
+    .then(undefined, err => {
+  console.log('err:', err)
+})
+```
+
+**核心步骤:**
+
+1. then的内部将`resolve`,`reject`也推送到数组中
+2. 调整`runHandlers`函数，内部直接调用`runPromise`函数即可
+
+```javascript
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+class MyPromise {
+  state = PENDING
+  result = undefined
+  handlers = []
+
+  constructor(executor) {
+    const resolve = (result) => {
+      this.#changeState(FULFILLED, result)
+      this.#runHandlers()
+    }
+    const reject = (result) => {
+      this.#changeState(REJECTED, result)
+      this.#runHandlers()
+    }
+    executor(resolve, reject)
+  }
+
+  #runHandlers() {
+    while (this.handlers.length > 0) {
+      // 2. 解构出resolve,reject执行和上一步一样的逻辑
+      const { onFulfilled, onRejected, resolve, reject } = this.handlers.shift()
+      if (this.state === FULFILLED) {
+        this.#runPromise(onFulfilled, resolve, reject)
+      } else {
+        this.#runPromise(onRejected, resolve, reject)
+      }
+    }
+  }
+
+
+  #changeState(state, result) {
+    if (this.state !== PENDING) {
+      return
+    }
+    this.state = state
+    this.result = result
+  }
+  then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => {
+      throw reason;
+    };
+    const p2 = new MyPromise((resolve, reject) => {
+      if (this.state === FULFILLED) {
+        this.#runPromise(onFulfilled, resolve, reject)
+      } else if (this.state === REJECTED) {
+        this.#runPromise(onRejected, resolve, reject)
+      } else {
+        // 1. 将 resolve和reject也推送到数组中
+        this.handlers.push({
+          onFulfilled, onRejected, resolve, reject
+        })
+      }
+    })
+    return p2
+  }
+  #runPromise(callback, resolve, reject) {
+    const res = callback(this.result)
+    if (res instanceof MyPromise) {
+      res.then(resolve, reject)
+    } else {
+      this.state === FULFILLED ? resolve(res) : reject(res)
+    }
+  }
+}
+```
+
+### 手写Promise-使用微任务
+
+**需求:**
+
+1. 如下代码打印结果为`1,2,4,3`
+
+```javascript
+console.log(1)
+const p = new MyPromise((resolve, reject) => {
+  console.log(2)
+  resolve(3)
+})
+p.then(res => {
+  console.log(res)
+})
+console.log(4)
+```
+
+**核心步骤:**
+
+1. 使用`queueMicrotask`包裹`runPromise`的内部逻辑即可
+2. [传送门:MDN-queueMicrotask](https://developer.mozilla.org/zh-CN/docs/Web/API/queueMicrotask)
+3. [传送门:MDN-queueMicrotask使用指南](https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_DOM_API/Microtask_guide)
+
+```javascript
+  #runPromise(callback, resolve, reject) {
+    // 1. 使用queueMicrotask 包裹内部逻辑即可
+    queueMicrotask(() => {
+      const res = callback(this.result)
+      if (res instanceof MyPromise) {
+        res.then(resolve, reject)
+      } else {
+        this.state === FULFILLED ? resolve(res) : reject(res)
+      }
+    })
+  }
+```
+
+### 小结:
+
+手写`Promise`的核心代码:
+
+```javascript
+// 保存状态的常量
+    const PENDING = 'pending'
+    const FULFILLED = 'fulfilled'
+    const REJECTED = 'rejected'
+    class MyPromise {
+      // 状态
+      state = PENDING
+      // 成功、失败原因
+      result = undefined
+      // 待执行的回调函数
+      handlers = []
+
+      // 构造函数
+      constructor(executor) {
+        // 定义 resolve和reject
+        const resolve = (result) => {
+          this.#changeState(FULFILLED, result)
+          this.#runHandlers()
+        }
+        const reject = (result) => {
+          this.#changeState(REJECTED, result)
+          this.#runHandlers()
+        }
+        // 接收传入的执行器，接收定义的resolve和reject
+        executor(resolve, reject)
+      }
+      // 根据状态执行回调函数的 私有方法
+      #runHandlers() {
+        while (this.handlers.length > 0) {
+          // 2. 解构出resolve,reject执行和上一步一样的逻辑
+          const { onFulfilled, onRejected, resolve, reject } = this.handlers.shift()
+          if (this.state === FULFILLED) {
+            this.#runPromise(onFulfilled, resolve, reject)
+          } else {
+            this.#runPromise(onRejected, resolve, reject)
+          }
+        }
+      }
+      // 修改状态的 私有方法
+      #changeState(state, result) {
+        if (this.state !== PENDING) {
+          return
+        }
+        this.state = state
+        this.result = result
+      }
+      // then方法，接收成功和失败的回调函数
+      then(onFulfilled, onRejected) {
+        // onFulfilled 和 onRejected 的非空判断
+        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+        onRejected = typeof onRejected === 'function' ? onRejected : reason => {
+          throw reason;
+        };
+        // 保证链式编程，返回Promise
+        const p2 = new MyPromise((resolve, reject) => {
+          if (this.state === FULFILLED) {
+            this.#runPromise(onFulfilled, resolve, reject)
+          } else if (this.state === REJECTED) {
+            this.#runPromise(onRejected, resolve, reject)
+          } else {
+            this.handlers.push({
+              onFulfilled, onRejected, resolve, reject
+            })
+          }
+        })
+        return p2
+      }
+      // 满足执行条件，执行回调函数的 私有方法
+      #runPromise(callback, resolve, reject) {
+        // 使用微任务队列
+        queueMicrotask(() => {
+          const res = callback(this.result)
+          if (res instanceof MyPromise) {
+            res.then(resolve, reject)
+          } else {
+            this.state === FULFILLED ? resolve(res) : reject(res)
+          }
+        })
+      }
+    }
+```
+
+![promise10.png](https://bu.dusays.com/2023/08/18/64df78c8b6ed3.png)
+![promise11.png](https://bu.dusays.com/2023/08/18/64df78c8e2db3.png)

@@ -29,6 +29,9 @@ nav:
   menu:
     - title: 网页
       item:
+        - name: 主页
+          link: https://wudl.cn
+          icon: /img/favicon.ico
         - name: 博客
           link: https://blog.wudl.cn
           icon: /img/favicon.ico
@@ -38,7 +41,7 @@ nav:
     - title: 项目
       item:
         - name: 图床
-          link: https://7b.top/
+          link: https://7bu.top/
           icon: /img/favicon.ico
 # mourn （哀悼日，指定日期网站简单变灰，不包括滚动条） 新加
 # 注意： 仅网站首页变灰，其他页面正常显示
