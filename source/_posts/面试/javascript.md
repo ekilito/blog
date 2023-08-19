@@ -5,7 +5,7 @@ description: 每天一道面试题。
 tags: [js面试题,闭包]
 keywords: js面试题,前端
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp
+cover: https://bu.dusays.com/2023/08/13/64d7b653376ff.webp
 copyright: true
 toc_number: false
 abbrlink: 3927

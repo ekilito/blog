@@ -1,11 +1,11 @@
 ---
 title: JS原理二
 data: 2023-8-17 21:10:00
-description: 
-tags: [柯里化,Promise]
+description: 手写Promise
+tags: [柯里化,手写Promise]
 keywords: 
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp
+cover: https://bu.dusays.com/2023/08/13/64d7b65c57bdc.webp
 copyright: true
 toc_number: false
 abbrlink: 882eae5
@@ -1068,23 +1068,41 @@ console.log(4)
 手写`Promise`的核心代码:
 
 ```javascript
-// 保存状态的常量
+// 保存状态的常量 避免后续 硬编码（代码中写死某个值）
     const PENDING = 'pending'
     const FULFILLED = 'fulfilled'
     const REJECTED = 'rejected'
+
+    // 定义类 后续new实例化
     class MyPromise {
       // 状态
       state = PENDING
-      // 成功、失败原因
-      result = undefined
-      // 待执行的回调函数
+      // 成功、失败原因 结果
+      result = undefined // 成功或失败的原因 默认不知道
+      // 待执行的回调函数 异步的回调函数 [{ onFulfilled,onRejected,resolve,reject }]
       handlers = []
 
-      // 构造函数
-      constructor(executor) {
+      // 构造函数 resolve定义 reject定义 执行传入的回调函数
+      constructor(executor) {  // 接收 new MyPromise((resolve,reject)=> {console.log('立刻执行')} ) 传进来的回调函数，然后 resolve，reject 传给回调函数executor
         // 定义 resolve和reject
         const resolve = (result) => {
+        // 抽取封装 #changeState
+        // if(this.state !== PENDING) {
+        //     return 如果状态不是等待，后面不执行 状态确定就不能改变
+        //   }
+        // this.state = FULFILLED
+        // this.result = result
           this.#changeState(FULFILLED, result)
+
+          // 调用保存在handlers中的回调函数
+          // 从开头部分取出回调函数执行
+          // while(this.handlers.length > 0) {
+          //    通过解构获取对应的回调函数
+          //    const { onFulfilled } = this.handlers.shift()
+          //    onFulfilled(this.result)
+          // }
+      
+          // 调用runHandlers 执行回调函数
           this.#runHandlers()
         }
         const reject = (result) => {
@@ -1094,19 +1112,28 @@ console.log(4)
         // 接收传入的执行器，接收定义的resolve和reject
         executor(resolve, reject)
       }
+
       // 根据状态执行回调函数的 私有方法
+      // 执行回调函数，取出数组中的回调函数，执行到没有为止 用shift()开头弹出
       #runHandlers() {
+        // 循环执行到数组长度为0为止
         while (this.handlers.length > 0) {
           // 2. 解构出resolve,reject执行和上一步一样的逻辑
           const { onFulfilled, onRejected, resolve, reject } = this.handlers.shift()
-          if (this.state === FULFILLED) {
+          if (this.state === FULFILLED) {  // this.state = 'fulfilled'硬编码
+          // 成功 执行 和 then 中类似的逻辑
+          // 获取结果，根据是否为Promise以及状态调用对应的逻辑
+          // onFulfilled(this.result)
             this.#runPromise(onFulfilled, resolve, reject)
           } else {
+            // 失败
+            // onRejected(this.result)
             this.#runPromise(onRejected, resolve, reject)
           }
         }
       }
-      // 修改状态的 私有方法
+
+      //提取resolve，reject内部公共逻辑  修改状态的（pending时才可以修改，执行到没有为止） 私有方法
       #changeState(state, result) {
         if (this.state !== PENDING) {
           return
@@ -1114,35 +1141,65 @@ console.log(4)
         this.state = state
         this.result = result
       }
-      // then方法，接收成功和失败的回调函数
+
+      // then方法，接收成功和失败的回调函数 根据不同的状态执行对应的回调函数
+      // 链式编程 promise对象.then(xxx).then(xxx)
       then(onFulfilled, onRejected) {
         // onFulfilled 和 onRejected 的非空判断
+        // 处理未传入回调函数的特殊情况
+        // 如果不是函数，设置为一个 接受一个参数，直接返回该参数的函数
         onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+        // 不是函数，设置一个为 接收一个参数，使用 throw 抛出的函数
         onRejected = typeof onRejected === 'function' ? onRejected : reason => {
           throw reason;
         };
+
         // 保证链式编程，返回Promise
+        // 创建一个新的Promise对象 并返回
         const p2 = new MyPromise((resolve, reject) => {
+            //  根据状态，调用不同的回调函数
           if (this.state === FULFILLED) {
+            // const res = onFulfilled(this.result)
+            // if (res instanceof MyPromise) {
+            //   res.then(resolve, reject)
+            // } else {
+            //   resolve(res)
+            // }
+            // 抽取封装逻辑
             this.#runPromise(onFulfilled, resolve, reject)
           } else if (this.state === REJECTED) {
+             //  参考成功状态的逻辑实现 失败状态
+             // const res = onRejected(this.result)
+             // if (res instanceof MyPromise) {
+             //   res.then(resolve, reject)
+             // } else {
+             //   reject(res)
+             // }
             this.#runPromise(onRejected, resolve, reject)
           } else {
+             // 状态为 pending 时,状态还没改变，回调函数还不能执行，将回调函数添加到数组中
             this.handlers.push({
+              //  将 resolve和reject也推送到数组中
               onFulfilled, onRejected, resolve, reject
             })
           }
         })
         return p2
       }
+
       // 满足执行条件，执行回调函数的 私有方法
       #runPromise(callback, resolve, reject) {
         // 使用微任务队列
         queueMicrotask(() => {
+          // 调用回调函数 获取执行的结果
           const res = callback(this.result)
+          // 判断是否为MyPromise的实例
           if (res instanceof MyPromise) {
+            // res 是Promise对象 then 方法
+            // 继续调用then方法 传入 resolve 和 reject
             res.then(resolve, reject)
           } else {
+            // 如果是普通的值，直接resolve
             this.state === FULFILLED ? resolve(res) : reject(res)
           }
         })
@@ -1152,3 +1209,523 @@ console.log(4)
 
 ![promise10.png](https://bu.dusays.com/2023/08/18/64df78c8b6ed3.png)
 ![promise11.png](https://bu.dusays.com/2023/08/18/64df78c8e2db3.png)
+
+### 手写Promise-实例方法catch
+
+**需求:**
+
+1. 实现实例方法`catch`,可以实现如下调用
+
+```javascript
+const p = new MyPromise((resolve, reject) => {
+  reject(1)
+})
+p.then(res => {
+  console.log(res)
+}).catch(err => {
+  console.log('err:', err)
+})
+```
+
+**核心步骤:**
+
+1. 参考[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch),catch等同于:`then(undefined,onRjected)`
+2. 直接添加`catch`方法，内部调用`then`
+3. 使用`try-catch`包裹`runPromise`,出错时,调用`reject`
+
+```javascript
+// 添加catch方法，内部参考文档的方式调用then即可 
+// 实例方法：catch 本质  then(undefined, onRjected)
+catch(onRjected) {
+  return this.then(undefined, onRjected)
+}
+
+  // 处理回调函数执行结果
+  #runPromise(callBack, resolve, reject) {
+    queueMicrotask(() => {
+        // 捕获异常，通过 reject 继续传递
+      try {
+        // 调用回调函数 获取执行的结果
+        const res = callBack(this.result)
+        if (res instanceof MyPromise) {
+          // res是Promise对象 then方法
+          res.then(resolve, reject)
+        } else {
+          // 如果是普通的值,直接resolve
+          if (this.state === FULFILLED) {
+            resolve(res)
+          } else if (this.state === REJECTED) {
+            reject(res)
+          }
+        }
+      } catch (error) {
+        return reject(error)
+      }
+    })
+```
+
+
+
+### 手写Promise-实例方法finally
+
+**需求:**
+
+1. 无论成功失败都会执行`finally`的回调函数
+2. 回调函数不接受任何参数
+
+```javascript
+const p = new Promise((resolve, reject) => {
+  reject('error')
+})
+
+p.then(res => {
+  console.log(res)
+}).catch(err => {
+  console.log(err)
+}).finally(() => {
+  console.log('finally执行啦')
+})
+```
+
+**核心步骤:**
+
+1. 参考[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally):finally方法类似于调用`then(onFinally,onFinally)`,且不接受任何回调函数
+
+```javascript
+// 实例方法：finally
+finally(onFinally) {
+    // 将传入的回调函数，作为成功/失败的回调函数
+    // 成功/失败都会执行
+    return this.then(onFinally,onFinally)
+}
+```
+
+
+
+### 手写Promise-静态方法resolve
+
+**需求:**
+
+1. 返回一个带有成功原因的`Promise`对象
+
+```javascript
+// 返回一个值为2的Promise对象
+MyPromise.resolve(2).then(res => {
+  console.log(res)
+})
+const p = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  }, 1000)
+})
+// 直接返回传入的p
+MyPromise.resolve(p).then(res => {
+  console.log(res)
+})
+```
+
+**核心步骤:**
+
+1. 增加静态方法`resolve`，根据传入的值返回不同的结果即可
+
+```javascript
+  // 静态方法 resolve
+  // 根据传入的值，返回不同的结果即可
+static resolve(value) {
+    // 如果是Promise 返回Promise，后续即可链式调用
+    if (value instanceof MyPromise) {
+      return value
+    }
+    // 如果都不是的话，直接返回一个新的Promise对象 将value传递给resolve
+    return new MyPromise((resolve, reject) => {
+      resolve(value)
+    })
+  }
+```
+
+
+
+### 手写Promise-静态方法reject
+
+**需求:**
+
+1. 返回一个带有拒绝原因的`Promise`对象
+
+```javascript
+MyPromise.reject('error').catch(err => {
+  console.log(err)
+})
+```
+
+**核心步骤:**
+
+1. 添加静态方法内部返回有拒绝原因的`Promise`对象即可
+
+```javascript
+  static reject(err) {
+    return new MyPromise((resolve, reject) => {
+      reject(err)
+    })
+  }
+```
+
+这个两个方法在axios拦截器里可以发现到。
+
+
+
+### 手写Promise-静态方法race
+
+**需求:**
+
+1. 接收Promise数组
+   1. 第一个Promise成功或失败时，返回一个该Promise对象及原因
+
+```javascript
+const promise1 = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('one')
+  }, 500)
+})
+
+const promise2 = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject('two')
+  }, 100)
+})
+
+MyPromise.race([promise1, promise2]).then((value) => {
+  console.log('value:',value)
+}, err => {
+  console.log('err:', err)
+})
+```
+
+
+
+**核心步骤:**
+
+1. 内部返回新的Promise对象:
+   1. 参数判断:
+      1. 不是数组:报错
+      2. 是数组:挨个解析
+         1. 任意一个Promise对象成功或失败，直接resolve或reject即可
+
+```javascript
+  static race(promises) {
+      // race的后面需要 .then.catch
+    return new MyPromise((resolve, reject) => {
+      // 参数校验 传入的是数组才继续执行
+      if (Array.isArray(promises)) {
+        // 如果传入的promises是空数组，则返回的promise就将永远等待
+        promises.forEach(item => {
+          // 通过 Promise.resolve进行处理，只要有任何一个为 成功/拒绝 即可响应结果
+          // MyPromise.resolve 传入的无论是不是Promise-->都变成Promise
+          // 如果不处理的话，传入普通的值，会直接报错
+          MyPromise.resolve(item).then(resolve, reject)
+        })
+      } else {
+        // 参数错误
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+```
+
+
+
+### 手写Promise-静态方法all
+
+**需求:**
+
+1. 接收Promise数组，
+   1. 所有Promise都成功时，返回一个成功的Promise对象及成功数组
+   2. 任何一个Promise失败，返回一个失败的Promise对象及第一个失败原因
+
+```javascript
+const promise1 = MyPromise.resolve(3);
+const promise2 = 42;
+const promise3 = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  }, 1000);
+});
+
+MyPromise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);
+});
+```
+
+**核心步骤:**
+
+1. 包裹一个新的Promise并返回，内部进行参数校验
+
+   1. 非数组:报错
+
+   2. 数组:循环挨个解析
+
+      1. 长度为0:直接返回成功状态的Promise
+
+      2. 长度不为0:挨个解析:forEach
+
+         1. 不是Promise对象:直接记录结果并判断是否解析完毕
+
+         2. 是Promise对象:调用then
+
+            1. 成功:记录结果并判断是否解析完毕
+            2. 失败:直接reject
+
+            
+
+```javascript
+ static all(promises) {
+     // 本质：外部可以 then catch
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        // 是数组再继续执行
+        // 存储结果
+        const result = []
+        let count = 0 // 记录结果的个数，判断是否完结
+        // 如果长度为0 直接返回 fulfilled状态的Promise即可
+        if (promises.length === 0) {
+          return resolve(promises)
+        }
+        // 挨个处理
+        promises.forEach((item, index) => {
+          if (item instanceof MyPromise) {
+            // 如果是Promise
+            item.then(res => {
+              count++
+              // 这么做的目的是保证 结果的顺序 和 promise每一项的一致
+              result[index] = res
+              count === promises.length && resolve(result)
+            }, err => {
+              // 任何一个失败 无视其他的promise直接 reject即可
+              reject(err)
+            })
+          } else {
+            // 如果不是Promise 原样添加在数组中
+            count++
+            result[index] = item
+            // 全部处理完毕时，响应结果
+            count === promises.length && resolve(result)
+          }
+        })
+      } else {
+        // 
+        // 错误提示
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+```
+
+
+
+### 手写Promise-静态方法allSettled
+
+**需求:**
+
+1. 传入Promise数组，当所有对象都已敲定时
+2. 返回一个新的Promise对象及以数组形式保存的结果
+
+```javascript
+// 获取传入的Promise数组 的 敲定状态 和结果
+// 包装到对象中 { value：'成功的值' , reason: '失败原因' , status: '状态' }
+
+const promise1 = Promise.resolve('1');
+const promise2 = new Promise((resolve, reject) => setTimeout(() => {
+  reject('two')
+}, 1000));
+const promises = [promise1, promise2];
+
+Promise.allSettled(promises).
+  then((results) => { console.log(results) })
+```
+
+
+
+**核心步骤:**
+
+1. 增加静态方法`allSettled`
+2. 内部逻辑和`all`类似，需要特别注意的地方:
+   1. 成功和失败的原因都会通过对象记录起来
+   2. 返回一个记录了成功`{state:FULFILLED,value:'xxx'}`失败`{state:REJECTED,reason:'xxx'}`的结果数组
+
+```javascript
+   static allSettled(promises) {
+        return new MyPromise((resolve, reject) => {
+          // 参数校验
+          if (Array.isArray(promises)) {
+            let result = []// 结果数组
+            let count = 0 // 计数器
+            // 空数组直接返回
+            if (promises.length === 0) return resolve(promises)
+
+            // 挨个处理内部的Promise对象
+            promises.forEach((item, index) => {
+              // 使用resolve转为promise统一处理
+              MyPromise.resolve(item).then(value => {
+                // 成功状态
+                count++
+                result[index] = {
+                  state: FULFILLED,
+                  value
+                }
+                // 处理完毕之后 resolve
+                count === promises.length && resolve(result)
+              }, reason => {
+                // 失败状态
+                count++
+                // 失败状态 值为 reason
+                result[index] = {
+                  state: REJECTED,
+                  reason
+                }
+                // 成功和失败最终都对应到 resolve
+                count === promises.length && resolve(result)
+              })
+            })
+          } else {
+              // 不是数组，报错
+            return reject(new TypeError('Argument is not iterable'))
+          }
+        })
+      }
+```
+
+### 手写Promise-静态方法any
+
+**需求:**-[传送门](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/any)
+
+1. 传入`Promise`数组，
+   1. 任何一个`Promise`对象敲定时，返回一个新的`Promise`对象，及对应的结果
+   2. 所有Promise都被拒绝时，返回一个包含所有拒绝原因的`AggregateError`错误数组
+
+```javascript
+    const promise1 = new MyPromise((resolve, reject) => {
+      setTimeout(() => {
+        reject('error1')
+      }, 2000);
+    });
+    const promise2 = new MyPromise((resolve, reject) => {
+      setTimeout(() => {
+        reject('error2')
+      }, 3000);
+    });
+    const promise3 = new MyPromise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve('success1')
+        reject('error3')
+      }, 1000);
+    });
+
+    MyPromise.any([promise1, promise2, promise3]).then((values) => {
+      console.log(values);
+    }, err => {
+      console.log('err:', err)
+    })
+```
+
+
+
+**核心步骤:**
+
+1. 类似于`all`核心区别
+   1. 数组长度为0，直接返回错误数组
+   2. 任何一个成功，直接成功
+   3. 通过数组记录失败原因，都失败时响应错误
+
+```javascript
+  static any(promises) {
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        let errors = []
+        let count = 0
+        // AggregateError包含多个错误对象的 单个错误对象（错误对象容器）
+        if (promises.length === 0) return reject(new AggregateError('All promises were rejected'))
+
+        // 挨个处理
+        promises.forEach(item => {
+          item.then(value => {
+            // 只要一个成功 就成功
+            resolve(value)
+          }, reason => {
+            count++
+            errors.push(reason)
+            // 如果没有一个promise成功 就把所有的错误原因合并到一起 一起抛出
+            count++ === promises.length && reject(new AggregateError(errors))
+
+          })
+        })
+      } else {
+        // 参数格式有误
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+```
+
+### promise需要掌握的点：
+
+1. 组织异步，回调函数 => 链式编程
+
+2. async await : await会等待后面Promise成功，并获取结果，try-catch捕获异常
+
+3. 多个异步管理：
+
+   1. all ：都成功，第一个失败
+
+   2. race：第一个成功或失败
+
+   3. allSettled: 所有都敲定（成功/失败），以对象数组的形式获取结果
+
+      ```javascript
+      [
+          {
+              value: '成功原因',
+              status:'fulfilled'
+          },
+          {
+              reason: '失败原因'
+              status:'rejected'
+          }
+      ]
+      ```
+
+   4. any : 第一个成功，或者都失败
+
+   5. **被追问**：用在哪里：
+
+      1. all：多个接口数据，获取完毕再渲染
+
+      2. race: 多个服务器的相同接口，都可以获取同一份数据，为了让用户尽可能的拿到结果，race调用相同的多个接口，只要拿到就渲染。
+
+         1.服务器1--新闻接口
+
+         2.服务器2--新闻接口
+
+         3.同时调用，哪个先获取到，就直接渲染
+
+      3. allSettled,any 了解过代码
+
+   **手写promise**
+
+   1. 构造函数：传入回调函数，并接收resolve和reject
+   2. 状态和成功/失败结果：
+      1. 定义常量保存状态，定义实例属性保存状态和结果
+      2. resolve和reject中修改状态记录结果
+   3. then方法
+      1. 多次调用：用数组来保存回调函数
+      2. 链式调用：内部返回Promise
+   4. 实例方法：
+      1. catch: 本质就是 then(undefined,onRejected)
+      2. finally: 本质 then(onFinally,onFinally)
+   5. 静态方法
+
+   
+
+   
+
+   

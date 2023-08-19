@@ -1,11 +1,11 @@
 ---
 title: JS原理一
 data: 2023-8-16 09:59:00
-description: 
+description: 手写call apply bind
 tags: [this,手写,继承,fetch,Generato]
 keywords: 
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b658096f0.webp
+cover: https://bu.dusays.com/2023/08/13/64d7b6569afaa.webp
 copyright: true
 toc_number: false
 abbrlink: 882eae
