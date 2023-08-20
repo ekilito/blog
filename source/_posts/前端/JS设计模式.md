@@ -145,13 +145,13 @@ request3({
 
 1. 工厂模式:JS中的表现形式,**返回新对象的函数(方法)**
 
-   1. ```javascript
+```javascript
       function sayHi(){} // 函数
       const obj ={
           name:'jack',
           sayHello(){} // 方法
       }
-      ```
+```
 
 2. 日常开发中,有2个很经典的场景
 
