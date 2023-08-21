@@ -5,7 +5,7 @@ description: 手写Promise
 tags: [柯里化,手写Promise]
 keywords: 
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b65c57bdc.webp
+cover: https://bu.dusays.com/2023/02/20/63f371a777341.png
 copyright: true
 toc_number: false
 abbrlink: 882eae5

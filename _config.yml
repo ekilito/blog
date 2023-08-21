@@ -4,7 +4,7 @@
 
 # Site
 # Site
-title: 'kilitoのBlog'
+title: 'kilito'
 subtitle: '生活明朗,万物可爱'
 description: '一只小小清的博客,欢迎访问'
 keywords: 个人博客,kilito,小清
@@ -152,7 +152,7 @@ bangumi: # 追番设置
 envelope_comment:
   enable: true #控制开关
   custom_pic:
-    cover: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/violet.jpg #信笺头部图片
+    cover: https://bu.dusays.com/2023/08/13/64d7b6544c610.webp #信笺头部图片
     line: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/line.png #信笺底部图片
     beforeimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/before.png # 信封前半部分
     afterimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/after.png # 信封后半部分

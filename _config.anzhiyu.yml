@@ -31,11 +31,11 @@ nav:
       item:
         - name: 主页
           link: https://wudl.cn
-          icon: /img/favicon.ico
+          icon: /img/32.png
         - name: 博客
           link: https://blog.wudl.cn
           icon: /img/favicon.ico
-        - name: 小清
+        - name: 旧站
           link: https://ccv-engineer.gitee.io/
           icon: /img/favicon.ico
     - title: 项目
@@ -582,14 +582,14 @@ footer:
             link: https://www.foreverblog.cn/
           - title: 开往
             link: https://github.com/travellings-link/travellings
-      - title: 主题
-        links:
-          - title: 文档
-            link: /docs/
-          - title: 源码
-            link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
-          - title: 更新日志
-            link: /update/
+      #- title: 主题
+      #  links:
+      #    - title: 文档
+      #      link: /docs/
+      #    - title: 源码
+      #      link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
+      #    - title: 更新日志
+      #      link: /update/
       - title: 导航
         links:
           - title: 即刻短文
@@ -613,10 +613,10 @@ footer:
       enable: true
       link: /copyright
     linkList:
-      - link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
+      - link: https://github.com/ekilito/blog
         text: 主题
-      # - link: https://image.anheyu.com
-      #   text: 图床
+      - link: https://7bu.top/
+        text: 图床
       # - link: https://beian.miit.gov.cn/
       #   text: 湘ICP备-xxxxxxx号
     subTitle:
@@ -807,7 +807,7 @@ ClickShowText:
 
 # Default display mode (网站默认的显示模式)
 # light (default) / dark
-display_mode: light
+display_mode: dark
 
 # Beautify (美化页面显示)
 beautify:
@@ -878,7 +878,7 @@ aside:
   hide: false
   button: true
   mobile: true # display on mobile
-  position: left # left or right
+  position: right # left or right
   display: # 控制对应详情页面是否显示侧边栏
     archive: true
     tag: true
@@ -943,7 +943,7 @@ busuanzi:
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
   enable: true
-  publish_date: 8/4/2023 00:00:00
+  publish_date: 8/4/2023 20:00:00
 
 # Aside widget - Newest Comments 最新评论
 newest_comments:
@@ -1133,7 +1133,7 @@ home_top:
       shadow: var(--anzhiyu-shadow-green)
       class: green
       icon: anzhiyu-icon-book
-    - name: 面试
+    - name: 大学
       path: /categories/面试/
       shadow: var(--anzhiyu-shadow-red)
       class: red
@@ -1156,7 +1156,7 @@ friends_vue:
   enable: true
   vue_js: /js/friend.js
   apiurl: https://puquan.wudl.cn/ # 朋友圈后端地址
-  top_background: https://bu.dusays.com/2023/08/13/64d8d295bd409.jpg
+  top_background: https://bu.dusays.com/2023/08/21/64e3563b5fceb.png
 
 # 黑色模式粒子效果canvas
 universe:

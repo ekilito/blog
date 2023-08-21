@@ -5,7 +5,7 @@ description: 手写call apply bind
 tags: [this,手写,继承,fetch,Generato]
 keywords: 
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b6569afaa.webp
+cover: https://bu.dusays.com/2023/08/21/64e360fd692ba.webp
 copyright: true
 toc_number: false
 abbrlink: 882eae

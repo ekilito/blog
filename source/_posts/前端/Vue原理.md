@@ -5,7 +5,7 @@ description:
 tags: vue原理
 keywords: vue原理
 sticky:  # 数字越大，置顶优先
-cover: https://bu.dusays.com/2023/08/13/64d7b65c57bdc.webp
+cover: https://bu.dusays.com/2022/07/17/62d4106238e7c.jpg
 copyright: true
 toc_number: false
 abbrlink: f82ea27

@@ -9,13 +9,25 @@
     position: relative;
     width: 47%;
     padding: 0 1rem!important;
-    background: url(https://bu.dusays.com/2023/08/14/64d9d1ebce8fc.png) right center;
+    background-image: url(https://bu.dusays.com/2023/08/13/64d7b6544c610.webp);
+    ;
     height: 4.9rem;
     font-size: 1.5rem;
 }
 
 .category-lists a:hover {
-    background-image: url(https://bu.dusays.com/2023/08/14/64d9d1ebce8fc.png)!important;
+    background-image: url(https://bu.dusays.com/2023/08/13/64d7b6544c610.webp) !important;
+}
+
+
+/* 夜间模式 */
+
+[data-theme="dark"] .category-lists a:hover {
+    background-image: linear-gradient(to bottom right, rgba(51, 51, 51, 0.7), rgba(0, 0, 0, 0.7))!important;
+}
+
+[data-theme="dark"] .category-lists a {
+    background-image: linear-gradient(to bottom right, rgba(51, 51, 51, 0.7), rgba(0, 0, 0, 0.7))!important;
 }
 
 @media (max-width: 1200px) {

@@ -5,8 +5,10 @@
   buttonLink: /about/
   limit: 30
   home_essay: true
-  top_background: https://bu.dusays.com/2023/08/13/64d8d295bd409.jpg # 顶部显示图片
+  top_background: https://bu.dusays.com/2023/06/23/64959ead4e428.webp # 顶部显示图片
   essay_list:
+    - content: vue原理看的一脸懵啊...
+      date: 2023/08/21 19:48:24
     - content: vsCode 启动！
       date: 2023/08/16 16:48:24
     - content: 明天回家啦！
