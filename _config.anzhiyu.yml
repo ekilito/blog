@@ -31,13 +31,13 @@ nav:
       item:
         - name: 主页
           link: https://wudl.cn
-          icon: /img/32.png
+          icon: /img/48.png
         - name: 博客
           link: https://blog.wudl.cn
-          icon: /img/favicon.ico
+          icon: https://image.anheyu.com/favicon.ico
         - name: 旧站
           link: https://ccv-engineer.gitee.io/
-          icon: https://image.anheyu.com/favicon.ico
+          icon: /img/32.png
     - title: 项目
       item:
         - name: 图床
@@ -185,7 +185,7 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: https://bu.dusays.com/2023/08/14/64d9d5100e495.jpg
+  img: https://bu.dusays.com/2023/08/26/64ea10217f8f4.jpg
   effect: false
 
 # Disable all banner image
@@ -883,7 +883,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: https://bu.dusays.com/2023/08/14/64d9d5100e495.jpg # 自定义头像
+  avatar: https://bu.dusays.com/2023/08/26/64ea10217f8f4.jpg # 自定义头像
 
 # aside (侧边栏)
 # --------------------------------------
