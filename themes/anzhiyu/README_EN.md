@@ -1,5 +1,5 @@
 <p align="center">
-  <a title="Hexo Version" target="_blank" href="https://hexo.io/zh-cn/"><img alt="Hexo Version" src="https://img.shields.io/badge/Hexo-%3E%3D%205.0-orange?style=flat"></a>
+  <a title="Hexo Version" target="_blank" href="https://hexo.io/zh-cn/"><img alt="Hexo Version" src="https://img.shields.io/badge/Hexo-%3E%3D%205.3.0-orange?style=flat"></a>
   <a title="Node Version" target="_blank" href="https://nodejs.org/zh-cn/"><img alt="Node Version" src="https://img.shields.io/badge/Node-%3E%3D%2010.13.0-yellowgreen?style=flat"></a>
   <a title="License" target="_blank" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/anzhiyu-c/hexo-theme-anzhiyu.svg?style=flat"></a>
   <br>
@@ -69,37 +69,63 @@ Note:
 
 ## Functional characteristics
 
--[x] extremely detailed [user documentation] (https://docs.anheyu.com/)
--[x] Page components load lazily (pjax scheme)
--[x] the picture is loaded lazily
--[x] multiple code highlighting schemes
--[x] multilingual configuration
--[x] built-in multiple comment plug-ins
--[x] built-in web page access statistics
--[x] supports dark mode
--[x] supports footnote syntax
--[x] support custom CDN static resources
--[x] A rich variety of tag options to quickly build the features you want
--[x] supports customized right-click menus
--[x] support customized dominant tone to vary with the color of the cover image
--[x] support for immersive status bar
--[x] support article word statistics
--[x] support chat system
--[x] support Google Analytics, Baidu Analytics, Microsoft Analytics, cloudflare Analytics, cnzz Analytics
--[x] Advertising is supported
--[x] large picture view is supported
--[x] support waterfall flow and talk about it right away
--[x] supports waterfall stream album
--[x] supports Ali icon and fontawesome
--[x] supports cached swpp,pwa features
--[x] excellent privacy protocol support
--[x] AI abstract support for articles
--[x] support music ball
--[x] supports the global center console
--[x] supports shortcut key options
--[x] support local search / algolia search 🔍 / Docsearch
--[x] supports LaTeX mathematical formula
--[x] support mermaid flow chart
+-✅ extremely detailed [user documentation] (https://docs.anheyu.com/)
+-✅ Page components load lazily (pjax scheme)
+-✅ the picture is loaded lazily
+-✅ multiple code highlighting schemes
+-✅ multilingual configuration
+-✅ built-in multiple comment plug-ins
+-✅ built-in web page access statistics
+-✅ supports dark mode
+-✅ supports footnote syntax
+-✅ support custom CDN static resources
+-✅ A rich variety of tag options to quickly build the features you want
+-✅ supports customized right-click menus
+-✅ support customized dominant tone to vary with the color of the cover image
+-✅ support for immersive status bar
+-✅ support article word statistics
+-✅ support chat system
+-✅ support Google Analytics, Baidu Analytics, Microsoft Analytics, cloudflare Analytics, cnzz Analytics
+-✅ Advertising is supported
+-✅ large picture view is supported
+-✅ support waterfall flow and talk about it right away
+-✅ supports waterfall stream album
+-✅ supports Ali icon and fontawesome
+-✅ supports cached swpp,pwa features
+-✅ excellent privacy protocol support
+-✅ AI abstract support for articles
+-✅ support music ball
+-✅ supports the global center console
+-✅ supports shortcut key options
+-✅ support local search / algolia search 🔍 / Docsearch
+-✅ supports LaTeX mathematical formula
+-✅ support mermaid flow chart
+
+## Partial function display
+
+**Immersive status bar**
+
+Immerse yourself in reading.
+
+![Immersive status bar](https://upload-bbs.miyoushe.com/upload/2023/09/04/125766904/3bc088e73d07b4dc25fc62fa4cf63261_4205905123525229755.png)
+
+**Customized right-click menu**
+
+Highly customized.
+
+![ High and low custom right-click menu](https://upload-bbs.miyoushe.com/upload/2023/09/04/125766904/3f66e33b24a758d53717f6c2c44e50af_1884994888952376370.png)
+
+**AI Summary**
+Read articles quickly.
+![AI Summary](https://upload-bbs.miyoushe.com/upload/2023/09/04/125766904/184e089d64660f5f72390f547c864633_3266246986824356702.png)
+
+**A refreshing interface that makes people shine at the moment**
+
+![A refreshing interface that makes people shine at the moment](https://upload-bbs.miyoushe.com/upload/2023/09/04/125766904/8a16284fd36a9e986d5dbda772f697d0_1356079755877317976.png)
+
+**Comment Barrage**
+
+![Comment Barrage](https://upload-bbs.miyoushe.com/upload/2023/09/04/125766904/628aef1dbf52b61c0333682e8ee9954e_6905019516821534667.png)
 
 ## Contributors
 

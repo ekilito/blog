@@ -25,7 +25,7 @@ div
     script.
       var meting_api = "!{theme.asset.meting_api}";
 
-  //- 黑色模式粒子效果canvas
+  //- 深色模式粒子效果canvas
   if theme.universe.enable
     canvas(id="universe")
     script(async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js")
@@ -49,6 +49,16 @@ div
   else if theme.local_search.enable
     script(src=url_for(theme.asset.local_search))
 
+  if theme.peoplecanvas.enable && is_home()
+    script.
+      if (typeof gsap === "object") {
+        getScript("!{url_for(theme.asset.people_js)}", {defer:true})
+      } else {
+        getScript("!{url_for(theme.asset.gsap_js)}").then(()=>{
+          getScript("!{url_for(theme.asset.people_js)}", {defer:true})
+        });
+      }
+
   .js-pjax
     if needLoadCountJs
       != partial("includes/third-party/card-post-count/index", {}, { cache: true })
@@ -62,6 +72,10 @@ div
       include ./third-party/comments/js.pug
     
     input(type="hidden" name="page-type" id="page-type" value=(page.type ? page.type : (is_post() ? "post" : (is_category() ? "categories" : "anzhiyu"))))
+
+    //- 评论弹幕
+    if theme.comment_barrage_config.enable && theme.comments.use == 'Twikoo' && page.comments
+      script(async src=url_for(theme.asset.comment_barrage_js))
 
   != partial("includes/third-party/prismjs", {}, { cache: true })
 
@@ -77,9 +91,6 @@ div
     - const mail = theme.visitorMail.mail
     script.
       var visitorMail = "#{mail}";
-  //- 评论弹幕
-  if theme.comment_barrage_config.enable && theme.comments.use == 'Twikoo'
-    script(async data-pjax src=url_for(theme.asset.comment_barrage_js))
 
   //- 即刻依赖waterfall
   script(async data-pjax src=url_for(theme.asset.waterfall))

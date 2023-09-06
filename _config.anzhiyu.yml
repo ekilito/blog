@@ -9,7 +9,7 @@ menu:
     留言板: /comments/ || anzhiyu-icon-envelope
   我的:
     ChatGPT: https://chatgpt.wudl.cn || anzhiyu-icon-paper-plane
-    AI: http://svc.xy-yyds.online/zh || anzhiyu-icon-link
+    私人助理: https://ai.99uc.cc/chat || anzhiyu-icon-link
     音乐馆: /music/?id=891137324&server=netease || anzhiyu-icon-music
     追番页: /bangumis/ || anzhiyu-icon-bilibili
     相册集: /album/ || anzhiyu-icon-images
@@ -60,6 +60,7 @@ code_word_wrap: false # 换行嘛
 
 # copy settings
 # copyright: Add the copyright information after copied content (複制的内容后面加上版权信息)
+# copy: enable 复制后弹窗提示版权信息
 copy:
   enable: true
   copyright:
@@ -327,9 +328,11 @@ related_post:
 photofigcaption: false
 
 # post_pagination (分页)
-# value: 1 || 2 || false
+# value: 1 || 2 || 3 || 4 || false
 # 1: The 'next post' will link to old post
 # 2: The 'next post' will link to new post
+# 3: 只有下一篇，并且只在文章滚动到评论区时显示下一篇文章(旧文章)
+# 4: 只有下一篇，并且只在文章滚动到评论区时显示下一篇文章(旧文章) 显示图片cover
 # false: disable pagination
 post_pagination: 2
 
@@ -1085,7 +1088,7 @@ aplayerInject:
 snackbar:
   enable: true
   position: top-center
-  bg_light: "#3b70fc" # The background color of Toast Notification in light mode #3b70fc蓝色
+  bg_light: "#425AEF" # "#3b70fc" # The background color of Toast Notification in light mode #3b70fc蓝色
   bg_dark: "#1f1f1f" # The background color of Toast Notification in dark mode ##1f1f1f黑色
 
 # https://instant.page/
@@ -1301,9 +1304,20 @@ agreementPopup:
   enable: true
   url: /privacy
 
-  # 右键菜单
+# 右键菜单
 rightClickMenu:
   enable: true
+
+# 首页随便逛逛people模式 而非技能点模式，关闭后为技能点模式需要配置creativity.yml
+peoplecanvas:
+  enable: false
+  img: https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png
+
+# 动效
+dynamicEffect:
+  postTopWave: true # 文章顶部波浪效果
+  postTopRollZoomInfo: false # 文章顶部滚动时缩放
+  pageCommentsRollZoom: false # 非文章页面评论滚动时缩放显示（仅仅Twikoo生效）
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)

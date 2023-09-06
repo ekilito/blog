@@ -59,6 +59,11 @@ hexo.extend.filter.register("before_generate", () => {
       file: "js/anzhiyu/ai_abstract.js",
       version,
     },
+    people_js: {
+      name: "hexo-theme-anzhiyu",
+      file: "js/anzhiyu/people.js",
+      version,
+    },
   };
 
   const minFile = file => {
@@ -93,6 +98,7 @@ hexo.extend.filter.register("before_generate", () => {
         elemecdn: `https://npm.elemecdn.com/${name}${verType}/${file}`,
         onmicrosoft: `https://npm.onmicrosoft.cn/${name}${verType}/${file}`,
         cbd: `https://cdn.cbd.int/${name}${verType}/${file}`,
+        anheyu: `https://cdn.anheyu.com/npm/${name}${verType}/${min_file}`,
         custom: (CDN.custom_format || "").replace(/\$\{(.+?)\}/g, (match, $1) => value[$1]),
       };
 
