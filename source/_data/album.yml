@@ -31,6 +31,11 @@
   cover: https://bu.dusays.com/2023/08/13/64d8d577b5d85.jpg
   top_background: https://bu.dusays.com/2023/08/21/64e354966fa97.jpg
   album_list:
+    - date: 2023-09-10 00:00:00
+      content: ya
+      image:
+        - https://bu.dusays.com/2023/09/09/64fc9639aa97e.png
+        - https://bu.dusays.com/2023/09/09/64fc9639c9856.png
     - date: 2023-09-02 18:50:27
       content: 今日份天空！
       image:

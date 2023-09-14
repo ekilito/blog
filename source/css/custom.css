@@ -4,6 +4,17 @@
 }
 
 
+/* 公众号 */
+
+#flip-wrapper #flip-content .face {
+    background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat!important;
+}
+
+#flip-wrapper #flip-content .back {
+    background: url(https://bu.dusays.com/2023/09/14/65029595c243a.png) center center / 100% no-repeat!important;
+}
+
+
 /* 字体 */
 
 @font-face {
