@@ -9,7 +9,7 @@ menu:
     留言板: /comments/ || anzhiyu-icon-envelope
   我的:
     ChatGPT: https://chatgpt.wudl.cn || anzhiyu-icon-paper-plane
-    私人助理: https://ai.99uc.cc/chat || anzhiyu-icon-link
+    私人助理: https://gpt.zhizhubao.com/chat || anzhiyu-icon-link
     音乐馆: /music/?id=891137324&server=netease || anzhiyu-icon-music
     追番页: /bangumis/ || anzhiyu-icon-bilibili
     相册集: /album/ || anzhiyu-icon-images
@@ -1166,7 +1166,7 @@ home_top:
   banner:
     tips: 今日推荐
     title: 今日推荐
-    image: https://bu.dusays.com/2023/08/13/64d7b6544c610.webp
+    image: https://bu.dusays.com/2023/08/23/64e559967d40c.jpg #https://bu.dusays.com/2023/08/13/64d7b6544c610.webp
     link: /essay
 
 # 朋友圈配置
